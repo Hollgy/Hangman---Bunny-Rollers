@@ -1,4 +1,5 @@
-[
+export const countrysArray = 
+	[
     "Afghanistan",
     "Albania",
     "Algeria",
@@ -194,4 +195,4 @@
     "Yemen",
     "Zambia",
     "Zimbabwe"
-]
+	];

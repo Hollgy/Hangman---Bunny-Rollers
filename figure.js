@@ -1,3 +1,5 @@
+import { countrysArray } from "./Country.js"
+
 let correct = document.querySelector('.correct_letters')
 
 let hangman = {
@@ -22,8 +24,9 @@ arms.style.display = invisible
 legs.style.display = invisible
 
 // Random words from list
-const randomWords = ['Adde H', 'Kalle', 'Bulle']
+const randomWords = countrysArray
 let randomWord = randomWords[Math.floor(Math.random() * randomWords.length)]
+console.log(randomWord)
 
 // Create underline
 for(let lines = 0; lines <= randomWord.length; lines++){
