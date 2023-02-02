@@ -1,3 +1,5 @@
+let correct = document.querySelector('.correct_letters')
+
 let hangman = {
 	scaffold: document.querySelector('#scaffold'),
 	legs: document.querySelector('#legs'),
@@ -19,4 +21,19 @@ body.style.display = invisible
 arms.style.display = invisible
 legs.style.display = invisible
 
+// Random words from list
+const randomWords = ['Adde H', 'Kalle', 'Bulle']
+let randomWord = randomWords[Math.floor(Math.random() * randomWords.length)]
 
+// Create underline
+for(let lines = 0; lines <= randomWord.length; lines++){
+
+	const underLine = document.createElement('div')
+	underLine.style.width = "4em";
+	underLine.style.height = "0.3em";
+	underLine.style.background = "black";
+	underLine.style.margin = "2em";
+	underLine.style.display = "inline-block";
+	
+	correct.append(underLine)
+}
