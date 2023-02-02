@@ -1,6 +1,7 @@
 import { countrysArray } from "./Country.js"
 
 let correct = document.querySelector('.correct_letters')
+let test = document.querySelector('body')
 
 let hangman = {
 	scaffold: document.querySelector('#scaffold'),
@@ -34,9 +35,25 @@ for(let lines = 0; lines <= randomWord.length; lines++){
 	const underLine = document.createElement('div')
 	underLine.style.width = "4em";
 	underLine.style.height = "0.3em";
-	underLine.style.background = "black";
+	underLine.style.background = "#000000";
 	underLine.style.margin = "2em";
 	underLine.style.display = "inline-block";
 	
 	correct.append(underLine)
 }
+// const letter = [a-z,A-Z]
+let letter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','å','ä','ö'];
+
+test.addEventListener('keydown', event => {
+	console.log('Key down: ', event.key, event.target.value)
+})
+
+// test.addEventListener('keyup', () => {
+// 	if(randomWord = letter){
+// 		console.log(`yes`)
+// 	}
+// 	else{
+// 		console.log(`no`)
+// 	}
+// })
+
