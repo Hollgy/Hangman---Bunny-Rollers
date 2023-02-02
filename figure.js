@@ -48,12 +48,4 @@ test.addEventListener('keydown', event => {
 	console.log('Key down: ', event.key, event.target.value)
 })
 
-// test.addEventListener('keyup', () => {
-// 	if(randomWord = letter){
-// 		console.log(`yes`)
-// 	}
-// 	else{
-// 		console.log(`no`)
-// 	}
-// })
 
