@@ -29,12 +29,11 @@ while (remainningGuesses > 0) {
         if (correctGuesses.length === hiddenWord.length) {
             console.log('You have guessed the entire word correctly')
             break;
-
         }
-    }else {
+    } else {
         remainningGuesses--;
         console.log(`incorrect.`)
-        if(remainningGuesses === 0 ){
+        if (remainningGuesses === 0) {
             console.log(`tough shit pal`)
         }
     }
