@@ -1,4 +1,4 @@
-import { countrysArray } from "./Country.js"
+import { randomize } from "./functions.js"
 
 let correct = document.querySelector('.correct_letters')
 let test = document.querySelector('body')
@@ -15,8 +15,9 @@ const scaffold = hangman.scaffold
 const head = hangman.head
 const body = hangman.body
 const arms = hangman.arms
-const legs= hangman.legs
+const legs = hangman.legs
 const invisible = 'none'
+const visible = 'block'
 
 scaffold.style.display = invisible
 head.style.display = invisible
@@ -24,13 +25,8 @@ body.style.display = invisible
 arms.style.display = invisible
 legs.style.display = invisible
 
-// Random words from list
-const randomWords = countrysArray
-let randomWord = randomWords[Math.floor(Math.random() * randomWords.length)]
-console.log(randomWord)
-
 // Create underline
-for(let lines = 0; lines <= randomWord.length; lines++){
+for (let lines = 0; lines <= randomize().length; lines++) {
 
 	const underLine = document.createElement('div')
 	underLine.style.width = "4em";
@@ -38,14 +34,26 @@ for(let lines = 0; lines <= randomWord.length; lines++){
 	underLine.style.background = "#000000";
 	underLine.style.margin = "2em";
 	underLine.style.display = "inline-block";
-	
+
 	correct.append(underLine)
 }
-// const letter = [a-z,A-Z]
-let letter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','å','ä','ö'];
 
-test.addEventListener('keydown', event => {
-	console.log('Key down: ', event.key, event.target.value)
+console.log(randomize())
+test.addEventListener('keyup', event => {
+	console.log('Key down: ', event.key)
+
+	let letter = randomize().toLowerCase().split('').filter(element => element == event.key)
+	letter.forEach(element => {
+		// console.log(element)
+		if(element == event.key){
+			console.log('true')
+		}
+		else{
+			console.log('fel')
+			scaffold.style.display = visible
+		}
+	})
 })
+
 
 
