@@ -7,5 +7,5 @@ function randomize(){
 	
 	return randomWord;
 	}
-
+	
 export {randomize}
