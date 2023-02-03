@@ -40,26 +40,26 @@ for (let lines = 0; lines <= randomWord.length; lines++) {
 	correct.append(underLine)
 }
 
-console.log(randomWord)
-main.addEventListener('keyup', event => {
-	console.log('Key down: ', event.key)
+// Guess letter
+function guess() {
+	console.log(randomWord)
+	main.addEventListener('keyup', event => {
+		console.log('Key down: ', event.key)
 
-	let rightLetter = randomWord.toLowerCase().split('').filter(rightElement => rightElement = event.key)
-	let wrongLetter = randomWord.toLowerCase().split('').filter(wrongElement => wrongElement != event.key)
+		let rightLetter = randomWord.toLowerCase().split('').filter(rightElement => rightElement = event.key)
+		rightLetter.forEach(rightElement => {
 
-	rightLetter.forEach(rightElement => {
-
-		if(rightElement == event.key){
-			console.log('true');
+			if (rightElement == event.key) {
+				console.log('true')
+			}
+		})
+		for (let i = 0; i < randomWord.length; i++) {
+			if (randomWord[i].toLowerCase() != event.key) {
+				console.log('nope')
+				break
+			}
 		}
 	})
-	wrongLetter.forEach(wrongElement => {
-		
-		if(wrongElement != event.key){
-			console.log('nope')
-		}
-	})
-})
+}
 
-
-
+guess()
