@@ -1,9 +1,10 @@
 import { randomize } from "./functions.js"
 
 let correct = document.querySelector('.correct_letters')
+let incorrect = document.querySelector('.wrong_letters')
 let main = document.querySelector('body')
-let wordHolder = document.querySelector('#hold')
-let word = document.querySelector('#choosenWord')
+let correctAnswers = document.querySelector('#correctAnswers')
+let correctList = document.querySelector('#correctList')
 let wrongAnswers = document.querySelector('#wrongAnswers')
 let wrongList = document.querySelector('#wrongList')
 
@@ -34,7 +35,6 @@ let shuffle = randomize()
 // Create geusses ul
 let geusses = [];
 let guess
-
 function result() {
 	for (let i = 0; i < shuffle.length; i++) {
 		correct.setAttribute('id', 'my-word');
@@ -43,45 +43,44 @@ function result() {
 		guess.innerHTML = "_";
 
 		geusses.push(guess);
-		wordHolder.append(word);
-		word.append(guess);
+		correctAnswers.append(correctList);
+		correctList.append(guess);
 	}
 }
 result()
 
-// Create wrong answer ul
-let wrongGeusses = [];
-let wrongGuess
-
-function wrongUl() {
-	for (let i = 0; i <= 6; i++) {
-		correct.setAttribute('id', 'my-word');
-		wrongGuess = document.createElement('li');
-		wrongGuess.setAttribute('class', 'wrongGuess');
-		wrongGuess.innerHTML = "";
-
-		wrongGeusses.push(wrongGuess);
-		wrongAnswers.append(wrongList);
-		wrongList.append(wrongGuess);
-	}
-}
-wrongUl()
-
 // Guess letter
-	console.log(shuffle)
-	main.addEventListener('keyup', event => {
-		console.log('Key down: ', event.key)
-	
-		for(let x = 0; x < shuffle.length; x++){
-			if(shuffle[x].toLowerCase() === event.key) {
+console.log(shuffle)
+main.addEventListener('keyup', event => {
+	console.log('Key down: ', event.key)
+	function correctGuess() {
+		for (let x = 0; x < shuffle.length; x++) {
+			if (shuffle[x].toLowerCase() === event.key) {
 				console.log('true')
-				geusses[x].innerHTML = event.key.toLocaleUpperCase()
+				geusses[x].innerHTML = event.key.toUpperCase()
 			}
-			else {
-				console.log('false')
-				wrongGeusses[x].innerHTML = event.key.toLocaleUpperCase()
-			}
-		}			
-	
-		
-	})
+		}
+	}
+	correctGuess()
+
+	// Draw when the guess is wrong
+	const drawing = [scaffold, head, body, arms, legs]
+	function incorrectGuess() {
+		if (shuffle.toLowerCase().includes(event.key) == false) {
+			console.log('false')
+			drawing[0].style.display = visible
+		}
+	}
+	incorrectGuess()
+})
+
+// Creates a list with wrong letters
+main.addEventListener('keyup', (event) => {
+	incorrect.setAttribute('id', 'my-word')
+	const item = document.createElement('li')
+	item.setAttribute('class', 'wrongGuess')
+	item.textContent = event.key.toUpperCase()
+	wrongList.append(item)
+})
+
+

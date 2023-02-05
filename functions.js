@@ -1,7 +1,5 @@
 import { countrysArray } from "./Country.js"
 
-let main = document.querySelector('body')
-
 // Random words from list
 function randomize() {
 	const randomWords = countrysArray
