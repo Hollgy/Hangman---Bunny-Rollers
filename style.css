@@ -17,9 +17,6 @@ header {
     width: 100%;
 }
 
-main {
-}
-
 footer {
     display: flex;
     justify-content: center;
@@ -31,6 +28,24 @@ svg {
     width: 300px;
     height: 250px;
 }
+
+/* Style underline */
+#correctList, #wrongList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#wrongList {
+    color: #780c0c
+}
+
+#my-word li {
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+    font-size:3em;
+  }
 
 @media screen and (max-width: 999px) and (min-width:600px) {
     svg {
