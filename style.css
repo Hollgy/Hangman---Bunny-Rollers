@@ -32,6 +32,18 @@ svg {
     height: 250px;
 }
 
+/* Style underline */
+#choosenWord {
+    display: flex;
+    justify-content: center;
+}
+#my-word li {
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+    font-size:3em;
+  }
+
 @media screen and (max-width: 999px) and (min-width:600px) {
     svg {
         width: 500px;

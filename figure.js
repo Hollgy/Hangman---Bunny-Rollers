@@ -2,6 +2,10 @@ import { randomize } from "./functions.js"
 
 let correct = document.querySelector('.correct_letters')
 let main = document.querySelector('body')
+let wordHolder = document.querySelector('#hold')
+let word = document.querySelector('#choosenWord')
+let wrongAnswers = document.querySelector('#wrongAnswers')
+let wrongList = document.querySelector('#wrongList')
 
 let hangman = {
 	scaffold: document.querySelector('#scaffold'),
@@ -25,41 +29,59 @@ body.style.display = invisible
 arms.style.display = invisible
 legs.style.display = invisible
 
-let randomWord = randomize()
+let shuffle = randomize()
 
-// Create underline
-for (let lines = 0; lines <= randomWord.length; lines++) {
+// Create geusses ul
+let geusses = [];
+let guess
 
-	const underLine = document.createElement('div')
-	underLine.style.width = "4em";
-	underLine.style.height = "0.3em";
-	underLine.style.background = "#000000";
-	underLine.style.margin = "1em";
-	underLine.style.display = "inline-block";
+function result() {
+	for (let i = 0; i < shuffle.length; i++) {
+		correct.setAttribute('id', 'my-word');
+		guess = document.createElement('li');
+		guess.setAttribute('class', 'guess');
+		guess.innerHTML = "_";
 
-	correct.append(underLine)
+		geusses.push(guess);
+		wordHolder.append(word);
+		word.append(guess);
+	}
 }
+result()
+
+// Create wrong answer ul
+let wrongGeusses = [];
+let wrongGuess
+
+function wrongUl() {
+	for (let i = 0; i <= 6; i++) {
+		correct.setAttribute('id', 'my-word');
+		wrongGuess = document.createElement('li');
+		wrongGuess.setAttribute('class', 'wrongGuess');
+		wrongGuess.innerHTML = "";
+
+		wrongGeusses.push(wrongGuess);
+		wrongAnswers.append(wrongList);
+		wrongList.append(wrongGuess);
+	}
+}
+wrongUl()
 
 // Guess letter
-function guess() {
-	console.log(randomWord)
+	console.log(shuffle)
 	main.addEventListener('keyup', event => {
 		console.log('Key down: ', event.key)
-
-		let rightLetter = randomWord.toLowerCase().split('').filter(rightElement => rightElement = event.key)
-		rightLetter.forEach(rightElement => {
-
-			if (rightElement == event.key) {
+	
+		for(let x = 0; x < shuffle.length; x++){
+			if(shuffle[x].toLowerCase() === event.key) {
 				console.log('true')
+				geusses[x].innerHTML = event.key.toLocaleUpperCase()
 			}
-		})
-		for (let i = 0; i < randomWord.length; i++) {
-			if (randomWord[i].toLowerCase() != event.key) {
-				console.log('nope')
-				break
+			else {
+				console.log('false')
+				wrongGeusses[x].innerHTML = event.key.toLocaleUpperCase()
 			}
-		}
+		}			
+	
+		
 	})
-}
-
-guess()
