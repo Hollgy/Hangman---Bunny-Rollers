@@ -47,6 +47,11 @@ svg {
     font-size:3em;
   }
 
+  /* Restart button */
+  #restart {
+    cursor: pointer;
+  }
+
 @media screen and (max-width: 999px) and (min-width:600px) {
     svg {
         width: 500px;

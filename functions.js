@@ -1,5 +1,8 @@
 import { countrysArray } from "./Country.js"
 
+let restartButton = document.querySelector('#restart')
+
+
 // Random words from list
 function randomize() {
 	const randomWords = countrysArray
@@ -8,7 +11,13 @@ function randomize() {
 	return randomWord;
 }
 
-
+// Restart button
+function restart () {
+restartButton.addEventListener('click', () => {
+	document.location.reload()
+})
+}
+restart()
 
 
 
