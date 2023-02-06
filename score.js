@@ -38,3 +38,25 @@ while (remainningGuesses > 0) {
         }
     }
 }
+
+
+// Local storage som pushar correctGuesses till listform och kör in dom i .overlay elementet i footern
+
+//sparar antal gissningar till en sträng och förvarar den i localStorage
+localStorage.setItem("correctGuesses", JSON.stringify(guesses))
+
+// Hämtar data och parse'ar' tillbaka till en array
+let storedData = JSON.parse(localStorage.getItem('correctGuesses')) || [];
+
+// trycker in värdena i overlay i en ul
+let overlay = document.querySelector('.overlay');
+let list = document.createElement('ul');
+
+//loopar varje värde till li element och appendar dom
+for (let i = 0; i < storedData.length; i++) {
+let item = document.createElement('li');
+item.textContent = storedData[i];
+list.appendChild(item);
+}
+
+overlay.appendChild(list);
