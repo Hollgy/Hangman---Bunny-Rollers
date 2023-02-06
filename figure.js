@@ -1,7 +1,12 @@
-import { countrysArray } from "./Country.js"
+import { randomize } from "./functions.js"
 
 let correct = document.querySelector('.correct_letters')
-let test = document.querySelector('body')
+let incorrect = document.querySelector('.wrong_letters')
+let main = document.querySelector('body')
+let correctAnswers = document.querySelector('#correctAnswers')
+let correctList = document.querySelector('#correctList')
+let wrongAnswers = document.querySelector('#wrongAnswers')
+let wrongList = document.querySelector('#wrongList')
 
 let hangman = {
 	scaffold: document.querySelector('#scaffold'),
@@ -15,8 +20,9 @@ const scaffold = hangman.scaffold
 const head = hangman.head
 const body = hangman.body
 const arms = hangman.arms
-const legs= hangman.legs
+const legs = hangman.legs
 const invisible = 'none'
+const visible = 'block'
 
 scaffold.style.display = invisible
 head.style.display = invisible
@@ -24,28 +30,57 @@ body.style.display = invisible
 arms.style.display = invisible
 legs.style.display = invisible
 
-// Random words from list
-const randomWords = countrysArray
-let randomWord = randomWords[Math.floor(Math.random() * randomWords.length)]
-console.log(randomWord)
+let shuffle = randomize()
 
-// Create underline
-for(let lines = 0; lines <= randomWord.length; lines++){
+// Create geusses ul
+let geusses = [];
+let guess
+function result() {
+	for (let i = 0; i < shuffle.length; i++) {
+		correct.setAttribute('id', 'my-word');
+		guess = document.createElement('li');
+		guess.setAttribute('class', 'guess');
+		guess.innerHTML = "_";
 
-	const underLine = document.createElement('div')
-	underLine.style.width = "4em";
-	underLine.style.height = "0.3em";
-	underLine.style.background = "#000000";
-	underLine.style.margin = "2em";
-	underLine.style.display = "inline-block";
-	
-	correct.append(underLine)
+		geusses.push(guess);
+		correctAnswers.append(correctList);
+		correctList.append(guess);
+	}
 }
-// const letter = [a-z,A-Z]
-let letter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','å','ä','ö'];
+result()
 
-test.addEventListener('keydown', event => {
-	console.log('Key down: ', event.key, event.target.value)
+// Guess letter
+console.log(shuffle)
+main.addEventListener('keyup', event => {
+	console.log('Key down: ', event.key)
+	function correctGuess() {
+		for (let x = 0; x < shuffle.length; x++) {
+			if (shuffle[x].toLowerCase() === event.key) {
+				console.log('true')
+				geusses[x].innerHTML = event.key.toUpperCase()
+			}
+		}
+	}
+	correctGuess()
+
+	// Draw when the guess is wrong
+	const drawing = [scaffold, head, body, arms, legs]
+	function incorrectGuess() {
+		if (shuffle.toLowerCase().includes(event.key) == false) {
+			console.log('false')
+			drawing[0].style.display = visible
+		}
+	}
+	incorrectGuess()
+})
+
+// Creates a list with wrong letters
+main.addEventListener('keyup', (event) => {
+	incorrect.setAttribute('id', 'my-word')
+	const item = document.createElement('li')
+	item.setAttribute('class', 'wrongGuess')
+	item.textContent = event.key.toUpperCase()
+	wrongList.append(item)
 })
 
 

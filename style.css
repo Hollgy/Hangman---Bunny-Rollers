@@ -35,6 +35,7 @@ header {
     box-shadow: 10px 10px 10px rgba(0 , 0,0, 0.3) ;
 }
 
+<<<<<<< HEAD
 main {
     overflow: hidden;
     height: calc(100vh - 100px);
@@ -43,6 +44,8 @@ main {
     top: 50px;
 }
 
+=======
+>>>>>>> dev
 footer {
     display: flex;
     justify-content: center;
@@ -62,6 +65,7 @@ svg {
     height: 250px;
 }
 
+<<<<<<< HEAD
 .correct_letters{
     width: 100em;
     
@@ -69,6 +73,26 @@ svg {
     text { font-size: 4vw; }
 }
 
+=======
+/* Style underline */
+#correctList, #wrongList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#wrongList {
+    color: #780c0c
+}
+
+#my-word li {
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+    font-size:3em;
+  }
+
+>>>>>>> dev
 @media screen and (max-width: 999px) and (min-width:600px) {
     svg {
         width: 500px;

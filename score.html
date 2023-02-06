@@ -2,15 +2,12 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Hangman</title>
-	<link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
-	<script src="figure.js" type="module"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="score.css">
+    <script src="score.js" type="module"></script>
 </head>
 
 <body>
@@ -38,19 +35,25 @@
                     fill="black" />
             </svg>
         </figure>
-        <section class="correct_letters">
-            <div id="correctAnswers"></div>
-            <ul id="correctList"></ul>
+        
+        <section class="score_screen" id="Screen">
+            <div class="score-overlay ">
+                <h2><strong>You've Won</strong></h2>
+                <p>Correctly Guessed word here</p>
+                <p>Amount of Guesses</p>
+                
+            </div>
         </section>
-        <section class="wrong_letters">
-            <div id="wrongAnswers"></div>
-            <ul id="wrongList"></ul>
+        <section class="correct_letters">
         </section>
     </main>
     <footer>
+        <input type="button" id="btnToggle" value="TOGGLE">
+        <section class="wrong_letters">
             <div>
-                <h2>Help me MF</h2>
+                <h2>dinmamma</h2>
             </div>
+        </section>
     </footer>
 </body>
 
