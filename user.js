@@ -21,3 +21,10 @@ scoreButton.addEventListener('click', () => {
         isVisible = false;
     }
 });
+
+const checkbox = document.querySelector("userInput")
+checkbox.addEventListener("keypress", checkName, false)
+
+
+
+
