@@ -54,10 +54,8 @@ footer {
 
 svg {
     width: 300px;
-    height: 250px;   
-}
-img{
-
+    height: 250px;  
+    transform: scale(0.7); 
 }
 
 /* Style underline */
