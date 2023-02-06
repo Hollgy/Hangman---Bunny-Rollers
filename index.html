@@ -7,18 +7,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Hangman</title>
 	<link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 	<script src="figure.js" type="module"></script>
 </head>
 
 <body>
     <header>
         <h1>HANG DA MAN</h1>
+        <div class="text-container">
+            <input type="text" class="user-input" placeholder="Enter Username" maxlength="8" minlength="1">
+        </div>
     </header>
     <main>
-        <figure class="hang-da-man">
+        <figure class="">
             <svg viewBox="0 0 501 565" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <ellipse id="ground" cx="250.5" cy="536" rx="250.5" ry="29" fill="black" fill-opacity="0.06" />
                 <path id="scaffold" fill-rule="evenodd" clip-rule="evenodd"
@@ -43,15 +43,15 @@
             <ul id="correctList"></ul>
         </section>
         <section class="wrong_letters">
-            <div id="wrongAnswers"></div>
             <ul id="wrongList"></ul>
         </section>
     </main>
     <footer>
             <div>
-                <h2>Help me MF</h2>
+                <h2>dinmamma</h2>
             </div>
     </footer>
 </body>
+<script src="user.js" type="module"></script>
 
 </html>
