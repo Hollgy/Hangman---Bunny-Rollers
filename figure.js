@@ -55,7 +55,7 @@ main.addEventListener('keyup', event => {
 	function correctGuess() {
 		for (let x = 0; x < shuffle.length; x++) {
 			if (shuffle[x].toLowerCase() === event.key) {
-				console.log('true')
+				console.log('Correct guess')
 				geusses[x].innerHTML = event.key.toUpperCase()
 			}
 		}
@@ -65,21 +65,18 @@ main.addEventListener('keyup', event => {
 	// Draw when the guess is wrong
 	function incorrectGuess() {
 		const drawing = [scaffold, head, body, arms, legs]
-		let countWrongAnswer = 0
+		
 		if (shuffle.toLowerCase().includes(event.key) == false) {
-			scaffold.style.display = visible
-			main.addEventListener('keyup', () => {
-				countWrongAnswer++
 				drawing[countWrongAnswer].style.display = visible
+				countWrongAnswer++
 
-				console.log('false')
-			})
-
+				console.log('incorrect guess')
 		}
 	}
 	incorrectGuess()
+	
 })
-
+let countWrongAnswer = 0
 // Creates a list with wrong letters
 main.addEventListener('keyup', (event) => {
 	incorrect.setAttribute('id', 'word')
