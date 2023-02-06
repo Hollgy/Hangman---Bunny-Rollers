@@ -10,16 +10,16 @@ function toggleVisibility() {
 
 let gissningar = 0;
 input = ''
-while (gissningar = 5) {
+while (gissningar < 6) {
     console.log("gissa igen");
     gissningar++;
-    if (input = randomWords)
+    if (input === randomWords)
 }
 
 const hiddenWord = "randomWords";
 let maxGuesses = 5;
 let remainningGuesses = maxGuesses;
-let correctGuesses [];
+let correctGuesses = [];
 
 while (remainningGuesses > 0) {
     const guess = prompt('Guess again')
@@ -29,6 +29,7 @@ while (remainningGuesses > 0) {
         if (correctGuesses.length === hiddenWord.length) {
             console.log('You have guessed the entire word correctly')
             break;
+            localStorage.setItem("correctGuesses", JSON.stringify(correctGuesses))
         }
     } else {
         remainningGuesses--;
@@ -39,20 +40,20 @@ while (remainningGuesses > 0) {
     }
 }
 
-
 // Local storage som pushar correctGuesses till listform och kör in dom i .overlay elementet i footern
 
 //sparar antal gissningar till en sträng och förvarar den i localStorage
+
+
 localStorage.setItem("correctGuesses", JSON.stringify(guesses))
 
-// Hämtar data och parse'ar' tillbaka till en array
 let storedData = JSON.parse(localStorage.getItem('correctGuesses')) || [];
 
-// trycker in värdena i overlay i en ul
+// väljer elementet overlay 
 let overlay = document.querySelector('.overlay');
 let list = document.createElement('ul');
 
-//loopar varje värde till li element och appendar dom
+// parse'ar in correctGuesses som list element och appendar
 for (let i = 0; i < storedData.length; i++) {
 let item = document.createElement('li');
 item.textContent = storedData[i];
