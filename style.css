@@ -69,12 +69,17 @@ svg {
     color: #780c0c
 }
 
-#my-word li {
+#word li {
     list-style: none;
     margin: 0;
     padding: 0 10px;
     font-size:3em;
 }
+
+  /* Restart button */
+  #restart {
+    cursor: pointer;
+  }
 
 @media screen and (max-width: 999px) and (min-width:600px) {
     svg {
