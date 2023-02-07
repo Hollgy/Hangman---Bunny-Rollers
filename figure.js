@@ -1,4 +1,4 @@
-import { randomize } from "./functions.js"
+import { randomize, restart } from "./functions.js"
 
 let correct = document.querySelector('.correct_letters')
 let incorrect = document.querySelector('.wrong_letters')
@@ -6,6 +6,7 @@ let main = document.querySelector('body')
 let correctAnswers = document.querySelector('#correctAnswers')
 let correctList = document.querySelector('#correctList')
 let wrongList = document.querySelector('#wrongList')
+let restartButton = document.querySelector('#restart')
 
 let hangman = {
 	scaffold: document.querySelector('#scaffold'),
@@ -44,8 +45,10 @@ function result() {
 		geusses.push(guess);
 		correctAnswers.append(correctList);
 		correctList.append(guess);
+restart()
 	}
 }
+
 result()
 
 // Guess letter
@@ -71,7 +74,8 @@ main.addEventListener('keyup', event => {
 				countWrongAnswer++
 
 				console.log('incorrect guess')
-		}
+			}
+			restart()
 	}
 	incorrectGuess()
 	
@@ -84,6 +88,5 @@ main.addEventListener('keyup', (event) => {
 	item.setAttribute('class', 'wrongGuess')
 	item.textContent = event.key.toUpperCase()
 	wrongList.append(item)
+	restart()
 })
-
-
