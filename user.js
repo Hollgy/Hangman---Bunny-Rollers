@@ -2,14 +2,14 @@
 // DOMS
 const textContainer = document.querySelector('.text-container')
 const userInput = document.querySelector('.user-input')
-// const uInput = document.getElementById('userInput')
+const uInput = document.getElementById('userInput')
 // const uContainer = document.getElementById('.user-container')
 const scoreOverlay = document.querySelector('.overlay')
 const scoreButton = document.querySelector('.open-score')
+const arrayDisplay = document.getElementById('#msg')
 const head = document.querySelector('header')
 const invisible = 'none';
 const visible = 'block';
-const arrayDisplay = document.getElementById('#msg')
 
 // ------------------------------------
 let isVisible = false;
@@ -30,6 +30,8 @@ head.addEventListener("keyup", function (h) {
     console.log("input i field")
 })
 // ------------------------------------
+// local storage nedanför
+
 let users = [];
 
 const addUser = (ev)=>{
@@ -40,18 +42,19 @@ const addUser = (ev)=>{
     users.push(user);
     // visar en lista
     console.warn('added', {users} );
-    let pre = document.querySelector('arrayDisplay pre');
+    // skapar en sträng av inputen, pushar detta till array och visas sedan i #msg
+    let pre = document.querySelector('#msg pre');
     pre.textContent = '\n' + JSON.stringify(users, '\t', 2)
-    
+
     // sparar lokalt
     localStorage.setItem('MyUserList', JSON.stringify(users));
+    // if sats nedan kollar så value inte är null
+
 }
 
 document.addEventListener('DOMContentLoaded', () =>{
     document.getElementById('userBtn').addEventListener('click', addUser)
 });
-// ------------------------------------
-
-
+// ------------------------------------ 
 
 // ------------------------------------
