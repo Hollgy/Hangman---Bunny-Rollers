@@ -2,8 +2,11 @@
 // DOMS
 const textContainer = document.querySelector('.text-container')
 const userInput = document.querySelector('.user-input')
-const scoreButton = document.querySelector('.open-score')
+// const uInput = document.getElementById('userInput')
+// const uContainer = document.getElementById('.user-container')
 const scoreOverlay = document.querySelector('.overlay')
+const scoreButton = document.querySelector('.open-score')
+const head = document.querySelector('header')
 
 // VARIABLER
 const invisible = 'none';
@@ -22,8 +25,11 @@ scoreButton.addEventListener('click', () => {
     }
 });
 
-const checkbox = document.querySelector("userInput")
-checkbox.addEventListener("keypress", checkName, false)
+// stoppar input i username fältet att räknas som gissning
+head.addEventListener("keyup", function (h) {
+    h.stopPropagation()
+    console.log("Knapptryck")
+})
 
 
 
