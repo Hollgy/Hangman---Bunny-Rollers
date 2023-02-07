@@ -9,6 +9,7 @@ const scoreButton = document.querySelector('.open-score')
 const head = document.querySelector('header')
 const invisible = 'none';
 const visible = 'block';
+const arrayDisplay = document.getElementById('#msg')
 
 // ------------------------------------
 let isVisible = false;
@@ -39,11 +40,11 @@ const addUser = (ev)=>{
     users.push(user);
     // visar en lista
     console.warn('added', {users} );
-    let pre = document.querySelector('.overlay pre');
+    let pre = document.querySelector('arrayDisplay pre');
     pre.textContent = '\n' + JSON.stringify(users, '\t', 2)
     
     // sparar lokalt
-    localStorage.setItem('UserList', JSON.stringify(users));
+    localStorage.setItem('MyUserList', JSON.stringify(users));
 }
 
 document.addEventListener('DOMContentLoaded', () =>{
