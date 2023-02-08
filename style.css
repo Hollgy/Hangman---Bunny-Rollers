@@ -1,5 +1,8 @@
-* {
-    box-sizing: border-box;
+*{
+	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
 }
 
 body {
@@ -7,22 +10,40 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #BFA89E;
-}
-/* HEADER -------------------------------- */
+    background: linear-gradient(black ,  #BFA89E) ;
+    height: 100vh;
+    overflow: hidden;
+ }
+
+
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    background-color: white;
     flex-wrap: wrap;
-    width: 100%;
+    width: 100%;    
+    height:auto;
 }
 /* Gametitle */
 h1 {
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 10px;
+    background: linear-gradient(90deg, #000, #fff,#000);
+    background-repeat: no-repeat;
+    animation: animate 5s linear infinite;
+    background-size: 80%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color:transparent;
+}
+@keyframes animate{
+    0%{
+        background-position: -500%;
+    }
+    100%{
+        background-position: 500%;
+    }
 }
 /* input av username */
 .user-input {
@@ -83,6 +104,7 @@ footer {
 .open-score {
     width: 100%;
 }
+
 /* Scoreboard */
 .overlay {
     display: 'none';
@@ -92,18 +114,40 @@ footer {
     height: 15em;
     background-color: orange;
     border: black 1px solid;
+    position: absolute;
 }
 
-@media screen and (max-width: 999px) and (min-width:600px) {
-    svg {
-        width: 500px;
-        height: 450px;
-    }
+svg {
+    margin:2em;
 }
 
-@media screen and (min-width:1000px) {
-    svg {
-        width: 700px;
-        height: 550px;
-    }
+.svg-hanger{
+ position: relative; 
 }
+
+/* Style underline */
+#correctList, #wrongList {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    bottom: 1vh;
+}
+
+#wrongList {
+    color: #780c0c ;
+    padding: 0 0.2em;
+}
+
+#word li {
+    list-style: none;
+    margin: 0;
+    padding: 0 0.2em;
+    font-size:3em;   
+}
+
+  /* Restart button */
+  #restart {
+    cursor: pointer;
+  }
+

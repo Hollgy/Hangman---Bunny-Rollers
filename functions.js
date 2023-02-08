@@ -1,10 +1,10 @@
-import { countrysArray } from "./Country.js"
+import { wordArray } from "./word-list.js";
 
 let restartButton = document.querySelector('#restart')
 
 // Random words from list
 function randomize() {
-	const randomWords = countrysArray
+	const randomWords = wordArray
 	let randomWord = randomWords[Math.floor(Math.random() * randomWords.length)]
 
 	return randomWord;
