@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(black, #BFA89E);
+    background: linear-gradient(black, #e2cbc1);
     height: 100vh;
     overflow: hidden;
 }
@@ -30,10 +30,10 @@ h1 {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 10px 0px 50px ;
     background: linear-gradient(90deg, #000, #fff, #000);
     background-repeat: no-repeat;
-    animation: animate 5s linear infinite;
+    animation: animate 4s linear infinite;
     background-size: 80%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -97,6 +97,69 @@ svg {
 
 /* Restart button */
 #restart {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #18181a;
+    color: #fff;
+    font-family: 'Bebas Neue';
+    display: inline-block;
+    font-size: 25px;
+    line-height: 15px;
+    padding: 12px 12px 11px;
+    text-decoration: none;
+    cursor: pointer;
+    background: #FF013C;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  #restart span:first-child {
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
+  }
+  
+  #restart span:last-child {
+    color: #000;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 75%;
+    left: 50%;
+    transform: translateY(225%) translateX(-50%);
+    height: 14px;
+    font-size: 1rem;
+  }
+  
+  #restart:after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00E6F6;
+    transform-origin: bottom center;
+    transition: transform 700ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
+  }
+  
+  #restart:hover:after {
+    transform-origin: bottom center;
+    transform: skewY(9.3deg) scaleY(2);
+  }
+  
+  #restart:hover span:last-child {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 1;
+    transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+  }
+#restart {
     cursor: pointer;
 }
 
@@ -107,7 +170,110 @@ footer {
     /* width: 100%; */
     background-color: white;
 }
+/* scoreboard */
+.open-score, .open-score::after {
+    width: 89px;
+    height: 36px;
+    font-size: 16px;
+    font-family: 'Bebas Neue' , cursive;
+    background: linear-gradient(45deg , transparent 5% , #FF013C 5%);
+    
+    border: 0;
+    color: #fff;
+    letter-spacing: 3.5px;
+    line-height: 28px;
+    box-shadow: 6px 0px 0px #00E6F6;
+    outline: transparent;
+    position: relative;
+    cursor: pointer;
 
+}
+.open-score::after{
+    --slice-0: inset(50% 50% 50% 50% );
+    --slice-1: inset(80% -6px 0  0 );
+    --slice-2: inset(50% 50% 30%  0 );
+    --slice-3: inset(10% -6px 85% 0 );
+    --slice-4: inset(40% -6px 43% 0 );
+    content: 'Scoreboard';
+    display: block;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left:0;
+    background: linear-gradient(45deg, transparent 3% ,#00E6F6 , #00E6F6 3% , #FF013C 5%);
+    text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
+    clip-path: var(--slice-0);
+}
+.open-score:hover::after {
+    animation: 1.3s glitch;
+    animation-timing-function: steps(2, end);
+}
+@keyframes glitch {
+    0%{
+        clip-path: var(--slice-1);
+        transform: translate(-20px , -10px);
+    } 
+    10%{
+        clip-path: var(--slice-3);
+         transform: translate(10px , 10px);
+       
+    }  
+    20%{
+        
+        clip-path: var(--slice-1);
+        transform: translate(-10px , 10px);
+         
+    }
+    30%{
+        
+        clip-path: var(--slice-3);
+        transform: translate(0px , 5px);
+         
+    }
+    40%{
+        
+         clip-path: var(--slice-2);
+         transform: translate(-5px , 0px);
+         
+    }
+    50%{
+        
+        clip-path: var(--slice-3);
+        transform: translate(5px , 0px);
+        
+    }
+    60%{
+       
+        clip-path: var(--slice-4);
+        transform: translate(5px , 10px);
+         
+    }
+    70%{
+        
+        clip-path: var(--slice-2);
+        transform: translate(-10px , 10px);
+         
+    }
+    80%{
+        
+        clip-path: var(--slice-5);
+        transform: translate(20px , -10px);
+        
+    }
+    90%{
+        
+        clip-path: var(--slice-1);
+        transform: translate(-10px , 0px);
+         
+    }
+    100%{
+        
+        clip-path: var(--slice-1);
+        transform: translate(0);
+         
+    }
+}
 .open-score {
     width: 100%;
 }
