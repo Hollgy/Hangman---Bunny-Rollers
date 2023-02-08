@@ -13,55 +13,47 @@ body {
     background: linear-gradient(black ,  #BFA89E) ;
     height: 100vh;
     overflow: hidden;
-    position: relative;
-
-}
+ }
 
 
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-   color: #fff;
     flex-wrap: wrap;
-    width: 100%;
-    position: relative;top: 35px;
-    
+    width: 100%;    
+    height:auto;
 }
+
 h1 {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 10px;
+    background: linear-gradient(90deg, #000, #fff,#000);
+    background-repeat: no-repeat;
+    animation: animate 5s linear infinite;
+    background-size: 80%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color:transparent;
+}
+@keyframes animate{
+    0%{
+        background-position: -500%;
+    }
+    100%{
+        background-position: 500%;
+    }
 }
 .user-input {
     display: flex;
     justify-content: center;
 }
-.container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    position: relative; top: 100vh;
-}
 
-
-footer {
-    display: flex;
-    justify-content: center;
-    width: 100%; 
-    position: relative; bottom: 20px;
-    
-}
 .open-score {
     width: 100%;
-    
 }
-.scoreboard{
-    position: fixed;right:40vh;bottom: 60vh;
-  
-   
-}
+
 .overlay{
     display: 'none';    
     display: flex;
@@ -71,37 +63,34 @@ footer {
     background-color: orange;
     border: black 1px solid;
     position: absolute;
-    z-index: -2;
 }
 
 svg {
-    width: 300px;
-    height: 250px;
-    transform: scale(0.7); 
+    margin:2em;
 }
+
 .svg-hanger{
- position: relative; top: 5vh;
+ position: relative; 
 }
-
-
 
 /* Style underline */
 #correctList, #wrongList {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    position: relative;bottom: 30px;
+    position: relative;
+    bottom: 1vh;
 }
 
 #wrongList {
     color: #780c0c ;
-    padding: 0 0 20px;
+    padding: 0 0.2em;
 }
 
 #word li {
     list-style: none;
     margin: 0;
-    padding: 0 10px 0px;
+    padding: 0 0.2em;
     font-size:3em;   
 }
 
@@ -110,16 +99,3 @@ svg {
     cursor: pointer;
   }
 
-@media screen and (max-width: 999px) and (min-width:600px) {
-    svg {
-        width: 500px;
-        height: 450px;
-    }
-}
-
-@media screen and (min-width:1000px) {
-    svg {
-        width: 700px;
-        height: 550px;
-    }
-}
