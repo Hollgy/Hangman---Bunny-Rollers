@@ -1,5 +1,8 @@
 *{
 	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    
 }
 
 body {
@@ -7,21 +10,29 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #BFA89E;
+    background: linear-gradient(black ,  #BFA89E) ;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+
 }
+
 
 header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+   color: #fff;
     flex-wrap: wrap;
     width: 100%;
+    position: relative;top: 35px;
+    
 }
 h1 {
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 10px;
 }
 .user-input {
     display: flex;
@@ -31,17 +42,25 @@ h1 {
     display: flex;
     justify-content: center;
     width: 100%;
+    position: relative; top: 100vh;
 }
 
 
 footer {
     display: flex;
     justify-content: center;
-    /* width: 100%; */
-    background-color: white;
+    width: 100%; 
+    position: relative; bottom: 20px;
+    
 }
 .open-score {
     width: 100%;
+    
+}
+.scoreboard{
+    position: fixed;right:40vh;bottom: 60vh;
+  
+   
 }
 .overlay{
     display: 'none';    
@@ -51,29 +70,39 @@ footer {
     height: 15em;
     background-color: orange;
     border: black 1px solid;
+    position: absolute;
+    z-index: -2;
 }
 
 svg {
     width: 300px;
     height: 250px;
+    transform: scale(0.7); 
 }
+.svg-hanger{
+ position: relative; top: 5vh;
+}
+
+
 
 /* Style underline */
 #correctList, #wrongList {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;bottom: 30px;
 }
 
 #wrongList {
-    color: #780c0c
+    color: #780c0c ;
+    padding: 0 0 20px;
 }
 
 #word li {
     list-style: none;
     margin: 0;
-    padding: 0 10px;
-    font-size:3em;
+    padding: 0 10px 0px;
+    font-size:3em;   
 }
 
   /* Restart button */

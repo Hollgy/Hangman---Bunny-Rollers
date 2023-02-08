@@ -1,5 +1,7 @@
 *{
 	box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -8,6 +10,8 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #BFA89E;
+    overflow: hidden;
+    height: 100vh;
 }
 
 header {
