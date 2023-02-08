@@ -7,14 +7,16 @@ let correctAnswers = document.querySelector('#correctAnswers')
 let correctList = document.querySelector('#correctList')
 let wrongList = document.querySelector('#wrongList')
 let lossDisplay = document.querySelector('.hung-screen')
+let winDisplay = document.querySelector('.win-screen')
 
 let hangman = {
-	scaffold: document.querySelector('#scaffold'),
-	legs: document.querySelector('#legs'),
-	arms: document.querySelector('#arms'),
-	body: document.querySelector('#body'),
-	head: document.querySelector('#head')
+    scaffold: document.querySelector('#scaffold'),
+    legs: document.querySelector('#legs'),
+    arms: document.querySelector('#arms'),
+    body: document.querySelector('#body'),
+    head: document.querySelector('#head')
 }
+
 
 const scaffold = hangman.scaffold
 const head = hangman.head
@@ -24,6 +26,7 @@ const legs = hangman.legs
 const invisible = 'none'
 const visible = 'block'
 
+winDisplay.style.display = invisible
 lossDisplay.style.display = invisible
 scaffold.style.display = invisible
 head.style.display = invisible
@@ -37,17 +40,17 @@ let shuffle = randomize()
 let guesses = [];
 let guess
 function result() {
-	for (let i = 0; i < shuffle.length; i++) {
-		correct.setAttribute('id', 'word');
-		guess = document.createElement('li');
-		guess.setAttribute('class', 'guess');
-		guess.innerHTML = "_";
+    for (let i = 0; i < shuffle.length; i++) {
+        correct.setAttribute('id', 'word');
+        guess = document.createElement('li');
+        guess.setAttribute('class', 'guess');
+        guess.innerHTML = "_";
 
-		guesses.push(guess);
-		correctAnswers.append(correctList);
-		correctList.append(guess);
-		restart()
-	}
+        guesses.push(guess);
+        correctAnswers.append(correctList);
+        correctList.append(guess);
+        restart()
+    }
 }
 
 result()
@@ -55,71 +58,44 @@ result()
 // Guess letter
 console.log(shuffle)
 main.addEventListener('keyup', event => {
-	console.log('Key down: ', event.key)
-	function correctGuess() {
-		for (let x = 0; x < shuffle.length; x++) {
-			if (shuffle[x].toLowerCase() === event.key) {
-				console.log('Correct guess')
-				guesses[x].innerHTML = event.key.toUpperCase()
-			}
-		}
-	}
-	correctGuess()
+    console.log('Key down: ', event.key)
+    function correctGuess() {
+        for (let x = 0; x < shuffle.length; x++) {
+            if (shuffle[x].toLowerCase() === event.key) {
+                console.log('Correct guess')
+                guesses[x].innerHTML = event.key.toUpperCase()
+            }
+            
+        }
+    }
+    correctGuess()
 
-	const onlyLetter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','å','ä','ö']
-	// Incorrect guesses
-	function incorrectGuess() {
-		const drawing = [scaffold, head, body, arms, legs]
+    const onlyLetter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'å', 'ä', 'ö']
+    // Incorrect guesses
+    function incorrectGuess() {
+        const drawing = [scaffold, head, body, arms, legs]
 
-		// Draw when the guess is wrong
-		if (shuffle.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
-			drawing[countWrongAnswer].style.display = visible
-			countWrongAnswer++
-			console.log('incorrect guess')
+        // Draw when the guess is wrong
+        if (shuffle.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
+            drawing[countWrongAnswer].style.display = visible
+            countWrongAnswer++
+            console.log('incorrect guess')
 
-			// Print out wrong letters
-			incorrect.setAttribute('id', 'word')
-			const item = document.createElement('li')
-			item.setAttribute('class', 'wrongGuess')
-			item.textContent = event.key.toUpperCase()
-			wrongList.append(item)
+            // Print out wrong letters
+            incorrect.setAttribute('id', 'word')
+            const item = document.createElement('li')
+            item.setAttribute('class', 'wrongGuess')
+            item.textContent = event.key.toUpperCase()
+            wrongList.append(item)
 
             console.log(countWrongAnswer)
-		}
-		restart()
-	}
-	incorrectGuess()
-    if(countWrongAnswer >= 5){
+        }
+        restart()
+    }
+    incorrectGuess()
+    if (countWrongAnswer >= 5) {
         lossDisplay.style.display = visible
     }
 })
 let countWrongAnswer = 0
 
-
-
-// let count = 0 
-// lossDisplay.style.display = invisible
-// lossDisplay.addEventListener('keyup' incorrectGuess)
-// for( countWrongAnswer; countWrongAnswer < 5 ; countWrongAnswer = countWrongAnswer ++){
-//     console.log('incorrect guess')
-//     if ( countWrongAnswer === 5 ){
-//         lossDisplay.style.display = visible
-//         break;
-//     } else {
-//         lossDisplay.style.display = invisible
-//         invisible = false
-//     }
-//     restart();
-// }
-
-// let isVisible = false;
-// scoreOverlay.style.display = invisible;
-// scoreButton.addEventListener('click', () => {
-//     if (!isVisible) {
-//         scoreOverlay.style.display = visible;
-//         isVisible = true;
-//     } else {
-//         scoreOverlay.style.display = invisible;
-//         isVisible = false;
-//     }
-// });
