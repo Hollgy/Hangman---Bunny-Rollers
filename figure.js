@@ -31,8 +31,8 @@ legs.style.display = invisible
 
 let shuffle = randomize()
 
-// Create geusses ul
-let geusses = [];
+// Create gusses ul
+let guesses = [];
 let guess
 function result() {
 	for (let i = 0; i < shuffle.length; i++) {
@@ -41,7 +41,7 @@ function result() {
 		guess.setAttribute('class', 'guess');
 		guess.innerHTML = "_";
 
-		geusses.push(guess);
+		guesses.push(guess);
 		correctAnswers.append(correctList);
 		correctList.append(guess);
 		restart()
@@ -58,7 +58,7 @@ main.addEventListener('keyup', event => {
 		for (let x = 0; x < shuffle.length; x++) {
 			if (shuffle[x].toLowerCase() === event.key) {
 				console.log('Correct guess')
-				geusses[x].innerHTML = event.key.toUpperCase()
+				guesses[x].innerHTML = event.key.toUpperCase()
 			}
 		}
 	}
