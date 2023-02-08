@@ -6,7 +6,6 @@ let main = document.querySelector('body')
 let correctAnswers = document.querySelector('#correctAnswers')
 let correctList = document.querySelector('#correctList')
 let wrongList = document.querySelector('#wrongList')
-let restartButton = document.querySelector('#restart')
 
 let hangman = {
 	scaffold: document.querySelector('#scaffold'),
@@ -45,7 +44,7 @@ function result() {
 		geusses.push(guess);
 		correctAnswers.append(correctList);
 		correctList.append(guess);
-restart()
+		restart()
 	}
 }
 
@@ -65,28 +64,27 @@ main.addEventListener('keyup', event => {
 	}
 	correctGuess()
 
-	// Draw when the guess is wrong
+	const onlyLetter = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','å','ä','ö']
+	// Incorrect guesses
 	function incorrectGuess() {
 		const drawing = [scaffold, head, body, arms, legs]
-		
-		if (shuffle.toLowerCase().includes(event.key) == false) {
-				drawing[countWrongAnswer].style.display = visible
-				countWrongAnswer++
 
-				console.log('incorrect guess')
-			}
-			restart()
+		// Draw when the guess is wrong
+		if (shuffle.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
+			drawing[countWrongAnswer].style.display = visible
+			countWrongAnswer++
+			console.log('incorrect guess')
+
+			// Print out wrong letters
+			incorrect.setAttribute('id', 'word')
+			const item = document.createElement('li')
+			item.setAttribute('class', 'wrongGuess')
+			item.textContent = event.key.toUpperCase()
+			wrongList.append(item)
+		}
+		restart()
 	}
 	incorrectGuess()
-	
 })
 let countWrongAnswer = 0
-// Creates a list with wrong letters
-main.addEventListener('keyup', (event) => {
-	incorrect.setAttribute('id', 'word')
-	const item = document.createElement('li')
-	item.setAttribute('class', 'wrongGuess')
-	item.textContent = event.key.toUpperCase()
-	wrongList.append(item)
-	restart()
-})
+
