@@ -6,6 +6,7 @@ let main = document.querySelector('body')
 let correctAnswers = document.querySelector('#correctAnswers')
 let correctList = document.querySelector('#correctList')
 let wrongList = document.querySelector('#wrongList')
+let lossDisplay = document.querySelector('.hung-screen')
 
 let hangman = {
 	scaffold: document.querySelector('#scaffold'),
@@ -23,6 +24,7 @@ const legs = hangman.legs
 const invisible = 'none'
 const visible = 'block'
 
+lossDisplay.style.display = invisible
 scaffold.style.display = invisible
 head.style.display = invisible
 body.style.display = invisible
@@ -81,10 +83,43 @@ main.addEventListener('keyup', event => {
 			item.setAttribute('class', 'wrongGuess')
 			item.textContent = event.key.toUpperCase()
 			wrongList.append(item)
+
+            console.log(countWrongAnswer)
 		}
 		restart()
 	}
 	incorrectGuess()
+    if(countWrongAnswer >= 5){
+        lossDisplay.style.display = visible
+    }
 })
 let countWrongAnswer = 0
 
+
+
+// let count = 0 
+// lossDisplay.style.display = invisible
+// lossDisplay.addEventListener('keyup' incorrectGuess)
+// for( countWrongAnswer; countWrongAnswer < 5 ; countWrongAnswer = countWrongAnswer ++){
+//     console.log('incorrect guess')
+//     if ( countWrongAnswer === 5 ){
+//         lossDisplay.style.display = visible
+//         break;
+//     } else {
+//         lossDisplay.style.display = invisible
+//         invisible = false
+//     }
+//     restart();
+// }
+
+// let isVisible = false;
+// scoreOverlay.style.display = invisible;
+// scoreButton.addEventListener('click', () => {
+//     if (!isVisible) {
+//         scoreOverlay.style.display = visible;
+//         isVisible = true;
+//     } else {
+//         scoreOverlay.style.display = invisible;
+//         isVisible = false;
+//     }
+// });
