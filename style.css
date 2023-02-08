@@ -22,17 +22,31 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-   color: #fff;
     flex-wrap: wrap;
     width: 100%;
     position: relative;top: 35px;
     
 }
+
 h1 {
     width: 100%;
     display: flex;
     justify-content: center;
     padding: 10px;
+    background: linear-gradient(90deg, #000, #fff,#000);
+    background-repeat: no-repeat;
+    animation: animate 5s linear infinite;
+    background-size: 80%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color:transparent;
+}
+@keyframes animate{
+    0%{
+        background-position: -500%;
+    }
+    100%{
+        background-position: 500%;
+    }
 }
 .user-input {
     display: flex;
@@ -58,8 +72,9 @@ footer {
     
 }
 .scoreboard{
-    position: fixed;right:40vh;bottom: 60vh;
-  
+    position: fixed;right:50vh;bottom: 58vh;
+    
+
    
 }
 .overlay{
@@ -108,6 +123,7 @@ svg {
   /* Restart button */
   #restart {
     cursor: pointer;
+    position: fixed;bottom:25px ;
   }
 
 @media screen and (max-width: 999px) and (min-width:600px) {
