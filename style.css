@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #cdd0f7;
+    background: #d9dbf7;
     height: 100vh;
     overflow: hidden;
 }
@@ -33,21 +33,21 @@ h1 {
     display: flex;
     justify-content: center;
     padding: 10px;
-    background: linear-gradient(90deg, #cdd0f7, #1c1c1c, #cdd0f7);
+    background: linear-gradient(90deg, #d9dbf7, #1c1c1c, #d9dbf7);
     background-repeat: no-repeat;
-    animation: animate 6s linear infinite;
-    background-size: 65%;
+    animation: animate 5s linear infinite;
+    background-size: 90%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 @keyframes animate {
     0% {
-        background-position: -100%;
+        background-position: -500%;
     }
 
     100% {
-        background-position: 200%;
+        background-position: 500%;
     }
 }
 
@@ -101,23 +101,24 @@ svg {
 
 /* Restart button */
 #restart, #userBtn, .open-score {
-    cursor: pointer;
-    width: 7em;
-    height: 2em;
-    border-radius: 0.5em;
-    box-shadow: inset 1px 2px 5px #938f8f;
+    background-color: #d9dbf7;
+    color: #0b0976;
+    border:2px solid #0b0976;
+    padding:0.5em;
+    border-radius: 0.4em;
     font-weight: bold;
-    font-size: 0.9em;
+    font-size: 1.5em;
 }
 
 #userInput{
-    height: 2em;
-    width: 20em;
+    margin-right: 0.5em;
+    font-size: 1.4em;
 }
 
 #restart:hover, #userBtn:hover, .open-score:hover {
+    cursor: pointer;
     box-shadow: 1px 1px 6px #575252;
-    background-color: #f0fdf9;
+    background-color: #fafcfc;
 }
 
 /* .open-score {
@@ -173,3 +174,5 @@ svg {
         width: 300px;
     }
 }
+
+
