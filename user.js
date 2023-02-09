@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('userBtn').addEventListener('click', addUser)
 });
 
-// ------------------------------------ 
-
-// ------------------------------------
+// ------------------------------------ !! TODO
+// Pusha   localStorage.setItem('CurrentUser', JSON.stringify(user));
+//  till my user list istället för let username och let score.
+// // ------------------------------------ !!
