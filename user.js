@@ -54,6 +54,7 @@ const addUser = (ev) => {
 
     // Save to local storage
     localStorage.setItem('MyUserList', JSON.stringify(users));
+    localStorage.setItem('CurrentUser', JSON.stringify(user));
 }
 
 document.addEventListener('DOMContentLoaded', () => {

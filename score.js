@@ -13,7 +13,9 @@ input = ''
 while (gissningar < 6) {
     console.log("gissa igen");
     gissningar++;
-    if (input === randomWords)
+    if (input === randomWords) {
+        // vad skall göras här?
+    }
 }
 
 const hiddenWord = "randomWords";
@@ -29,7 +31,7 @@ while (remainningGuesses > 0) {
         if (correctGuesses.length === hiddenWord.length) {
             console.log('You have guessed the entire word correctly')
             break;
-            localStorage.setItem("correctGuesses", JSON.stringify(correctGuesses))
+            //localStorage.setItem("correctGuesses", JSON.stringify(correctGuesses))
         }
     } else {
         remainningGuesses--;
