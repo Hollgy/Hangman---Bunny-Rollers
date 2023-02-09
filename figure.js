@@ -113,3 +113,4 @@ let remainingTries = calculateRemainingTries();
 console.log("Remaining tries: ", remainingTries);
 
 
+export { calculateRemainingTries }

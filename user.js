@@ -1,4 +1,4 @@
-
+import { calculateRemainingTries } from "./figure.js";
 // DOMS
 const textContainer = document.querySelector('.text-container')
 const userInput = document.querySelector('.user-input')
@@ -33,28 +33,33 @@ head.addEventListener("keyup", function (h) {
 // local storage nedanför
 
 let users = [];
-
-const addUser = (ev)=>{
+let score = calculateRemainingTries()
+const addUser = (ev) => {
     ev.preventDefault()
     let user = {
         username: document.getElementById('userInput').value,
+        score: score
     }
     users.push(user);
-    // visar en lista
-    console.warn('added', {users} );
-    // skapar en sträng av inputen, pushar detta till array och visas sedan i #msg
+
+    // Build the string to be displayed in the #msg element
     let pre = document.querySelector('#msg pre');
-    pre.textContent = '\n' + JSON.stringify(users, '\t', 2)
+    let content = "";
+    for (let i = 0; i < users.length; i++) {
+        let username = users[i].username;
+        let score = users[i].score;
+        content += `Username: ${username}\nScore: ${score}.\n`;
+    }
+    pre.textContent = content;
 
-    // sparar lokalt
+    // Save to local storage
     localStorage.setItem('MyUserList', JSON.stringify(users));
-    // if sats nedan kollar så value inte är null
-
 }
 
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('userBtn').addEventListener('click', addUser)
 });
+
 // ------------------------------------ 
 
 // ------------------------------------
