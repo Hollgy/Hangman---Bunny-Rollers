@@ -112,5 +112,3 @@ function calculateRemainingTries() {
 
 let remainingTries = calculateRemainingTries();
 console.log("Remaining tries: ", remainingTries);
-
-

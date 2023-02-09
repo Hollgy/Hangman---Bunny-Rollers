@@ -38,14 +38,13 @@ const addUser = (ev)=>{
     ev.preventDefault()
     let user = {
         username: document.getElementById('userInput').value,
-        score: document.getElementById('userInput').value
     }
     users.push(user);
     // visar en lista
     console.warn('added', {users} );
     // skapar en sträng av inputen, pushar detta till array och visas sedan i #msg
-    let pre = document.querySelector('#msg');
-    pre.textContent = '\n' + JSON.stringify('Username: ' + user.username, '\t', 2)
+    let pre = document.querySelector('#msg pre');
+    pre.textContent = '\n' + JSON.stringify(users, '\t', 2)
 
     // sparar lokalt
     localStorage.setItem('MyUserList', JSON.stringify(users));
