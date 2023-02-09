@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
+    font-family: 'Times New Roman', Times, serif;
 }
 
 body {
@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(black, #BFA89E);
+    background: #d9dbf7;
     height: 100vh;
     overflow: hidden;
 }
@@ -22,19 +22,21 @@ header {
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    height: auto;
+    height: 10vh;
+    margin-bottom: 8em;
 }
 
 /* Gametitle */
 h1 {
     width: 100%;
+    font-size: 4em;
     display: flex;
     justify-content: center;
     padding: 10px;
-    background: linear-gradient(90deg, #000, #fff, #000);
+    background: linear-gradient(90deg, #d9dbf7, #1c1c1c, #d9dbf7);
     background-repeat: no-repeat;
     animation: animate 5s linear infinite;
-    background-size: 80%;
+    background-size: 90%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -63,6 +65,10 @@ h1 {
 }
 
 /* MAIN ---------------------------------------- */
+main{
+    height: 80vh;
+}
+
 .hung-screen {
     position: absolute;
     width: 200px;
@@ -89,38 +95,46 @@ h1 {
 
 /* Hangman */
 svg {
-    width: 300px;
-    height: 250px;
-    margin: 2em;
-
+    width: 400px;
+    height: auto;
 }
 
 /* Restart button */
-#restart {
+#restart, #userBtn, .open-score {
+    background-color: #d9dbf7;
+    color: #0b0976;
+    border:2px solid #0b0976;
+    padding:0.5em;
+    border-radius: 0.4em;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#userInput{
+    margin-right: 0.5em;
+    font-size: 1.4em;
+}
+
+#restart:hover, #userBtn:hover, .open-score:hover {
     cursor: pointer;
+    box-shadow: 1px 1px 6px #575252;
+    background-color: #fafcfc;
 }
 
-/* FOOTER ----------------------------------- */
-footer {
-    display: flex;
-    justify-content: center;
-    /* width: 100%; */
-    background-color: white;
-}
-
-.open-score {
+/* .open-score {
     width: 100%;
-}
+} */
 
 /* Scoreboard */
 .overlay {
     display: 'none';
     display: flex;
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    width: 80vw;
     height: 15em;
-    background-color: orange;
-    border: black 1px solid;
+    background-color: #e7e0d4;
+    border: #000000 1px solid;
     position: absolute;
 }
 
@@ -132,6 +146,7 @@ footer {
     flex-wrap: wrap;
     position: relative;
     bottom: 1vh;
+    margin: 0 3em;
 }
 
 #wrongList {
@@ -150,3 +165,14 @@ footer {
 #restart {
     cursor: pointer;
 }
+
+@media ( max-width: 400px) {
+    h1{
+        font-size: 2em;
+    }
+    svg{
+        width: 300px;
+    }
+}
+
+
