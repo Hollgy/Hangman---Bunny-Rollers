@@ -54,7 +54,7 @@ function result() {
 }
 
 result()
-
+let countCorrect = 0
 // Guess letter
 console.log(shuffle)
 main.addEventListener('keyup', event => {
@@ -64,6 +64,11 @@ main.addEventListener('keyup', event => {
             if (shuffle[x].toLowerCase() === event.key) {
                 console.log('Correct guess')
                 guesses[x].innerHTML = event.key.toUpperCase()
+                countCorrect ++
+                guesses[x] = false
+            }
+            if (countCorrect === shuffle.length) {
+                winDisplay.style.display = visible
             }
         }
     }
@@ -98,3 +103,15 @@ main.addEventListener('keyup', event => {
 })
 let countWrongAnswer = 0
 
+
+
+// möjligtvis en fungerande funktion för att mäta poäng i spelet
+function calculateRemainingTries() {
+    return 5 - countWrongAnswer;
+}
+
+let remainingTries = calculateRemainingTries();
+console.log("Remaining tries: ", remainingTries);
+
+
+export { calculateRemainingTries }
