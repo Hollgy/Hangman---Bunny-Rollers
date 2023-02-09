@@ -62,12 +62,16 @@ main.addEventListener('keyup', event => {
     function correctGuess() {
         for (let x = 0; x < shuffle.length; x++) {
             if (shuffle[x].toLowerCase() === event.key) {
+                console.log(guesses);
                 console.log('Correct guess')
                 guesses[x].innerHTML = event.key.toUpperCase()
-                countCorrect ++
+                countCorrect++
+                console.log(countCorrect);
                 guesses[x] = false
             }
             if (countCorrect === shuffle.length) {
+                // uppdatera användarens poäng
+                updateUserScore();
                 winDisplay.style.display = visible
             }
         }
@@ -103,10 +107,19 @@ main.addEventListener('keyup', event => {
 })
 let countWrongAnswer = 0
 
+function updateUserScore() {
+    // get current user to update the score
+    let user = JSON.parse(localStorage.getItem('CurrentUser'));
+    user.score = calculateRemainingTries();
+    console.log(user);
+    localStorage.setItem('CurrentUser', JSON.stringify(user));
+    return user;
+}
 
 
 // möjligtvis en fungerande funktion för att mäta poäng i spelet
 function calculateRemainingTries() {
+    console.log(countWrongAnswer);
     return 5 - countWrongAnswer;
 }
 
