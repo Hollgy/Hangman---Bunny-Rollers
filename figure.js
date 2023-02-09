@@ -121,12 +121,8 @@ function updateUserScore() {
 
 // möjligtvis en fungerande funktion för att mäta poäng i spelet
 function calculateRemainingTries() {
-<<<<<<< HEAD
-    return 6 - countWrongAnswer;
-=======
     console.log(countWrongAnswer);
     return 5 - countWrongAnswer;
->>>>>>> 1b024d35b12f790a56b6a717e819270f13889eb7
 }
 
 let remainingTries = calculateRemainingTries();
