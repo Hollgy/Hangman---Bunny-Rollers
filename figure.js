@@ -65,6 +65,7 @@ main.addEventListener('keyup', event => {
                 console.log('Correct guess')
                 guesses[x].innerHTML = event.key.toUpperCase()
                 countCorrect ++
+                guesses[x] = false
             }
             if (countCorrect === shuffle.length) {
                 winDisplay.style.display = visible
