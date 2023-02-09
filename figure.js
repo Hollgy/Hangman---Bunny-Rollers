@@ -10,6 +10,7 @@ let lossDisplay = document.querySelector('.hung-screen')
 let winDisplay = document.querySelector('.win-screen')
 
 let hangman = {
+    ground: document.querySelector('#ground'),
     scaffold: document.querySelector('#scaffold'),
     legs: document.querySelector('#legs'),
     arms: document.querySelector('#arms'),
@@ -17,7 +18,7 @@ let hangman = {
     head: document.querySelector('#head')
 }
 
-
+const ground = hangman.ground
 const scaffold = hangman.scaffold
 const head = hangman.head
 const body = hangman.body
@@ -28,6 +29,7 @@ const visible = 'block'
 
 winDisplay.style.display = invisible
 lossDisplay.style.display = invisible
+ground.style.display = invisible
 scaffold.style.display = invisible
 head.style.display = invisible
 body.style.display = invisible
@@ -77,7 +79,7 @@ main.addEventListener('keyup', event => {
     const onlyLetter = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'å', 'ä', 'ö']
     // Incorrect guesses
     function incorrectGuess() {
-        const drawing = [scaffold, head, body, arms, legs]
+        const drawing = [ground, scaffold, head, body, arms, legs]
 
         // Draw when the guess is wrong
         if (shuffle.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
@@ -97,7 +99,7 @@ main.addEventListener('keyup', event => {
         restart()
     }
     incorrectGuess()
-    if (countWrongAnswer >= 5) {
+    if (countWrongAnswer >= 6) {
         lossDisplay.style.display = visible
     }
 })
@@ -107,7 +109,7 @@ let countWrongAnswer = 0
 
 // möjligtvis en fungerande funktion för att mäta poäng i spelet
 function calculateRemainingTries() {
-    return 5 - countWrongAnswer;
+    return 6 - countWrongAnswer;
 }
 
 let remainingTries = calculateRemainingTries();
