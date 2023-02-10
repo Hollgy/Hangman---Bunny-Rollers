@@ -1,4 +1,4 @@
-import { calculateRemainingTries } from "./figure.js";
+import { calculateRemainingTries, updateUserScore } from "./figure.js";
 // DOMS
 const textContainer = document.querySelector('.text-container')
 const userInput = document.querySelector('.user-input')
@@ -16,6 +16,7 @@ let isVisible = false;
 scoreOverlay.style.display = invisible;
 scoreButton.addEventListener('click', () => {
     if (!isVisible) {
+        updateScoreBoardUI();
         scoreOverlay.style.display = visible;
         isVisible = true;
     } else {
@@ -36,22 +37,22 @@ let users = [];
 let score = calculateRemainingTries()
 const addUser = (ev) => {
     ev.preventDefault()
+    
     let user = {
         username: document.getElementById('userInput').value,
-<<<<<<< HEAD
+        score: 0
     }
     users.push(user);
-    // visar en lista
-    console.warn('added', {users} );
-    // skapar en sträng av inputen, pushar detta till array och visas sedan i #msg
-    let pre = document.querySelector('#msg pre');
-    pre.textContent = '\n' + JSON.stringify(users, '\t', 2)
-=======
-        score: score
-    }
-    users.push(user);
->>>>>>> dev
 
+    updateScoreBoardUI();
+    localStorage.setItem('CurrentUser', JSON.stringify(user));
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('userBtn').addEventListener('click', addUser)
+});
+
+function updateScoreBoardUI() {
     // Build the string to be displayed in the #msg element
     let pre = document.querySelector('#msg pre');
     let content = "";
@@ -61,16 +62,10 @@ const addUser = (ev) => {
         content += `Username: ${username}\nScore: ${score}.\n`;
     }
     pre.textContent = content;
-
+    
     // Save to local storage
     localStorage.setItem('MyUserList', JSON.stringify(users));
-    localStorage.setItem('CurrentUser', JSON.stringify(user));
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('userBtn').addEventListener('click', addUser)
-});
-
 // ------------------------------------ 
 
 // ------------------------------------

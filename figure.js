@@ -99,6 +99,7 @@ main.addEventListener('keyup', event => {
             wrongList.append(item)
 
             console.log(countWrongAnswer)
+            updateUserScore();
         }
         restart()
     }
@@ -126,11 +127,8 @@ function calculateRemainingTries() {
 }
 
 let remainingTries = calculateRemainingTries();
-<<<<<<< HEAD
-console.log("Remaining tries: ", remainingTries);
-=======
 console.log("Remaining tries: ", remainingTries);
 
 
 export { calculateRemainingTries }
->>>>>>> dev
+export { updateUserScore }
