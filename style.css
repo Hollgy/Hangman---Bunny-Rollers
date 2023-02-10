@@ -10,7 +10,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #d9dbf7;
+    background: #e4f1f1;
     height: 100vh;
     overflow: hidden;
 }
@@ -24,6 +24,7 @@ header {
     width: 100%;
     height: 10vh;
     margin-bottom: 8em;
+    background-color: #448a81;
 }
 
 /* Gametitle */
@@ -33,10 +34,10 @@ h1 {
     display: flex;
     justify-content: center;
     padding: 10px;
-    background: linear-gradient(90deg, #d9dbf7, #1c1c1c, #d9dbf7);
+    background: linear-gradient(90deg, #d9ecf7, #1c1c1c, #d9dbf7);
     background-repeat: no-repeat;
     animation: animate 5s linear infinite;
-    background-size: 90%;
+    background-size: 92.4vw;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -100,14 +101,15 @@ svg {
 }
 
 /* Restart button */
-#restart, #userBtn, .open-score {
-    background-color: #d9dbf7;
-    color: #0b0976;
-    border:2px solid #0b0976;
+#userBtn, .open-score {
+    background-color: #448a81;
+    color: #ffffff;
+    border:1px solid #346a64;
     padding:0.5em;
     border-radius: 0.4em;
     font-weight: bold;
     font-size: 1.5em;
+    box-shadow: 1px 1px 3px #363535;
 }
 
 #userInput{
@@ -115,9 +117,8 @@ svg {
     font-size: 1.4em;
 }
 
-#restart:hover, #userBtn:hover, .open-score:hover {
+#userBtn:hover, .open-score:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 6px #575252;
     background-color: #fafcfc;
 }
 
