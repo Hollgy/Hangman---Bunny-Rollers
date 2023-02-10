@@ -11,35 +11,24 @@ body {
     align-items: center;
     justify-content: center;
     background: #e4f1f1;
-    height: 100vh;
-    overflow: hidden;
 }
 
 
 header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+    text-align: center;
     width: 100%;
-    height: 10vh;
-    margin-bottom: 8em;
-    background-color: #448a81;
+  margin-bottom: 4em;
+  
 }
 
 /* Gametitle */
 h1 {
-    width: 100%;
     font-size: 4em;
     display: flex;
     justify-content: center;
-    padding: 10px;
-    background: linear-gradient(90deg, #d9ecf7, #1c1c1c, #d9dbf7);
-    background-repeat: no-repeat;
-    animation: animate 5s linear infinite;
-    background-size: 92.4vw;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-color: #448a81;
+    height: 1.5em;
+    width: 100%;
 }
 
 @keyframes animate {
@@ -66,8 +55,31 @@ h1 {
 }
 
 /* MAIN ---------------------------------------- */
-main{
+main {
     height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+/* .user-container {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.scoreboard {
+    grid-column: 1;
+    grid-row: 2;
+} */
+
+.score-enter{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.hangmanGame {
+    grid-column: 2 / span 3;
+    grid-row: 1 / span 4;
 }
 
 .hung-screen {
@@ -101,30 +113,31 @@ svg {
 }
 
 /* Restart button */
-#userBtn, .open-score {
+#userBtn,
+.open-score {
     background-color: #448a81;
     color: #ffffff;
-    border:1px solid #346a64;
-    padding:0.5em;
+    border: 2px solid #346a64;
+    padding: 0.5em;
     border-radius: 0.4em;
     font-weight: bold;
     font-size: 1.5em;
-    box-shadow: 1px 1px 3px #363535;
+    box-shadow: inset 1px 2px 4px #2e2e2e;
+    transition: background-color 0.3s;
 }
 
-#userInput{
+#userInput {
     margin-right: 0.5em;
     font-size: 1.4em;
 }
 
-#userBtn:hover, .open-score:hover {
+#userBtn:hover,
+.open-score:hover {
     cursor: pointer;
+    color: #346a64;
     background-color: #fafcfc;
+    box-shadow: 1px 2px 3px #363535;
 }
-
-/* .open-score {
-    width: 100%;
-} */
 
 /* Scoreboard */
 .overlay {
@@ -167,13 +180,30 @@ svg {
     cursor: pointer;
 }
 
-@media ( max-width: 400px) {
-    h1{
-        font-size: 2em;
+@media (max-width: 700px) {
+    h1 {
+        font-size: max(7vw, 2em, 2rem);
     }
-    svg{
-        width: 300px;
+
+    svg {
+        width: min(40vw, 20em, 20rem);
+    }
+    .score-enter{
+        grid-column: 2;
+        grid-row: 1;
+        margin-bottom: 2em;
+        font-size: min(2.5vw, 1em, 4rem);
+    }
+    
+    .hangmanGame {
+        grid-column: 2 / span 3;
+        grid-row: 2;
+    }
+    .correct_letters, .wrong_letters{
+        grid-column: 1 / span 2;
+        font-size: min(3vw, 1em, 1rem);
+    }
+    header{
+        margin-bottom: 1em;
     }
 }
-
-
