@@ -155,19 +155,6 @@ svg {
     box-shadow: 1px 2px 3px #363535;
 }
 
-/* Scoreboard */
-.overlay {
-    display: 'none';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80vw;
-    height: 15em;
-    background-color: #e7e0d4;
-    border: #000000 1px solid;
-    position: absolute;
-}
-
 /* Style underline */
 #correctList,
 #wrongList {
