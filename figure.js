@@ -51,7 +51,6 @@ function result() {
         guesses.push(guess);
         correctAnswers.append(correctList);
         correctList.append(guess);
-        restart()
     }
 }
 
@@ -100,7 +99,6 @@ main.addEventListener('keyup', event => {
 
             console.log(countWrongAnswer)
         }
-        restart()
     }
     incorrectGuess()
     if (countWrongAnswer >= 6) {
