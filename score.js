@@ -1,19 +1,12 @@
-// document.getElementById("btnToggle").onclick = toggleVisibility;
-// function toggleVisibility() {
-//     let screen = document.getElementById("Screen");
-//     if (screen.style.display == "none") {
-//         screen.style.display = "block";
-//     } else {
-//         screen.style.display = "none";
-//     }
-// }
-//troligtvis skräp ovan, återkomm och kolla senare / kg
+
 let gissningar = 0;
 input = ''
 while (gissningar < 6) {
     console.log("gissa igen");
     gissningar++;
-    if (input === randomWords)
+    if (input === randomWords) {
+        // vad skall göras här?
+    }
 }
 
 const hiddenWord = "randomWords";
@@ -29,7 +22,7 @@ while (remainningGuesses > 0) {
         if (correctGuesses.length === hiddenWord.length) {
             console.log('You have guessed the entire word correctly')
             break;
-            localStorage.setItem("correctGuesses", JSON.stringify(correctGuesses))
+            //localStorage.setItem("correctGuesses", JSON.stringify(correctGuesses))
         }
     } else {
         remainningGuesses--;

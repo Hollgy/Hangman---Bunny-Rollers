@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
+    font-family: 'Times New Roman', Times, serif;
 }
 
 body {
@@ -10,33 +10,25 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(black, #BFA89E);
-    height: 100vh;
-    overflow: hidden;
+    background: #e4f1f1;
 }
 
 
 header {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+    text-align: center;
     width: 100%;
-    height: auto;
+  margin-bottom: 4em;
+  
 }
 
 /* Gametitle */
 h1 {
-    width: 100%;
+    font-size: 4em;
     display: flex;
     justify-content: center;
-    padding: 10px;
-    background: linear-gradient(90deg, #000, #fff, #000);
-    background-repeat: no-repeat;
-    animation: animate 5s linear infinite;
-    background-size: 80%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-color: #448a81;
+    height: 1.5em;
+    width: 100%;
 }
 
 @keyframes animate {
@@ -63,65 +55,104 @@ h1 {
 }
 
 /* MAIN ---------------------------------------- */
-.hung-screen {
+main {
+    height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.user-container {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.scoreboard {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.score-enter{
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.hangmanGame {
+    grid-column: 2 / span 3;
+    grid-row: 1 / span 4;
+}
+
+/* Scoreboard */
+.overlay {
+    /* display: 'none'; */
     position: absolute;
-    width: 200px;
-    height: 200px;
     top: 50%;
     left: 50%;
-    margin-left: -100px;
-    margin-top: -100px;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+    padding: 0.2em;
+    background-color: #ffffff;
+    border: #000000 3px solid;
+}
+.hung-screen {
+    position: absolute;
+    width: 320px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    margin-left: -160px;
+    margin-top: -300px;
     background-color: white;
     border: red 2px solid;
 }
 
 .win-screen {
     position: absolute;
-    width: 200px;
-    height: 200px;
+    width: 320px;
+    height: 500px;
     top: 50%;
     left: 50%;
-    margin-left: -100px;
-    margin-top: -100px;
+    margin-left: -160px;
+    margin-top: -300px;
     background-color: white;
     border: green 2px solid;
 }
 
 /* Hangman */
 svg {
-    width: 300px;
-    height: 250px;
-    margin: 2em;
-
+    width: 400px;
+    height: auto;
 }
 
 /* Restart button */
-#restart {
-    cursor: pointer;
-}
-
-/* FOOTER ----------------------------------- */
-footer {
-    display: flex;
-    justify-content: center;
-    /* width: 100%; */
-    background-color: white;
-}
-
+#userBtn,
 .open-score {
-    width: 100%;
+    background-color: #448a81;
+    color: #ffffff;
+    border: 2px solid #346a64;
+    padding: 0.5em;
+    border-radius: 0.4em;
+    font-weight: bold;
+    font-size: 1.5em;
+    box-shadow: inset 1px 2px 4px #2e2e2e;
+    transition: background-color 0.3s;
 }
 
-/* Scoreboard */
-.overlay {
-    display: 'none';
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 15em;
-    background-color: orange;
-    border: black 1px solid;
-    position: absolute;
+#userInput {
+    margin-right: 0.5em;
+    font-size: 1.4em;
+}
+
+#userBtn:hover,
+.open-score:hover {
+    cursor: pointer;
+    color: #346a64;
+    background-color: #fafcfc;
+    box-shadow: 1px 2px 3px #363535;
 }
 
 /* Style underline */
@@ -132,6 +163,7 @@ footer {
     flex-wrap: wrap;
     position: relative;
     bottom: 1vh;
+    margin: 0 3em;
 }
 
 #wrongList {
@@ -149,4 +181,32 @@ footer {
 /* Restart button */
 #restart {
     cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    h1 {
+        font-size: max(7vw, 2em, 2rem);
+    }
+
+    svg {
+        width: min(40vw, 20em, 20rem);
+    }
+    .score-enter{
+        grid-column: 2;
+        grid-row: 1;
+        margin-bottom: 2em;
+        font-size: min(2.5vw, 1em, 4rem);
+    }
+    
+    .hangmanGame {
+        grid-column: 2 / span 3;
+        grid-row: 2;
+    }
+    .correct_letters, .wrong_letters{
+        grid-column: 1 / span 2;
+        font-size: min(3vw, 1em, 1rem);
+    }
+    header{
+        margin-bottom: 1em;
+    }
 }
