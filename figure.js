@@ -16,7 +16,7 @@ let scorebtn = document.getElementById("scorebtn");
 let scoreboard = document.querySelector(".scoreboard");
 let username = document.getElementById("username");
 let submit = document.getElementById("submit");
-let userPopup = document.getElementById('#user-container')
+let userPopup = document.getElementById('#use')
 
 
 
@@ -115,7 +115,7 @@ function updateWrongLetterE1() {
         finalMessage.innerText = 'Unfortunately you lost.';
         popup.style.display = 'flex';
         
-        scores.push(countWrongAnswer.value);
+        scores.push(countWrongAnswer);
         localStorage.setItem("scores", JSON.stringify(scores))
         scoreboard.innerHTML = scores.join("br")
     }
@@ -126,7 +126,6 @@ let countWrongAnswer = 0
 window.addEventListener('keyup', event => {
     if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
         const letter = event.key;
-
         if (selectedWord.includes(letter)) {
             if (!correctLetters.includes(letter)) {
                 correctLetters.push(letter);
@@ -155,7 +154,7 @@ scorebtn.addEventListener("click", function () {
     }
 });
 //---------------------------------------toggle user-popup.
-scorebtn.addEventListener("click", function () {
+window.addEventListener("load", function () {
     if (userPopup.style.display === "none") {
         userPopup.style.display = "block";
     } else {
