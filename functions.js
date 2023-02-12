@@ -29,8 +29,14 @@ function toggleScoreboard() {
 }
 
 scorebtn.addEventListener("click", toggleScoreboard);
+// ------------------------------------------------------
+
+// ------classlist variant nedanför---------
+// scorebtn.addEventListener("click", function () {
+//     scoreboard.classList.toggle("visible");
+// });
 //---------------------------------------toggle user-popup.
-function toggleUsername() {
+export function toggleUsername() {
     if (userPopup.style.display === "none") {
         userPopup.style.display = "block";
     } else {
@@ -40,6 +46,5 @@ function toggleUsername() {
 window.addEventListener("load", toggleUsername)
 
 export { toggleScoreboard }
-export { toggleUsername }
 export { restart }
 export { randomize }

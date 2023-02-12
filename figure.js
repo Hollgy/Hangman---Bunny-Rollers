@@ -16,6 +16,8 @@ let scorebtn = document.getElementById("scorebtn");
 let scoreboard = document.querySelector(".scoreboard");
 let username = document.getElementById("username");
 let submit = document.getElementById("submit");
+let userPopup = document.getElementById('#user-container')
+
 
 
 let hangman = {
@@ -147,11 +149,7 @@ playAgainBtn.addEventListener('click', () => {
     //Empty arrays
     location.reload()
 });
-
-
-
-
-//------------------------------------- toggle scorescreen.
+//---------------------------------------toggle scorescreen.
 scorebtn.addEventListener("click", function () {
     if (scoreboard.style.display === "none") {
         scoreboard.style.display = "block";
@@ -161,23 +159,20 @@ scorebtn.addEventListener("click", function () {
 });
 //---------------------------------------toggle user-popup.
 scorebtn.addEventListener("click", function () {
-    if (scoreboard.style.display === "none") {
-        scoreboard.style.display = "block";
+    if (userPopup.style.display === "none") {
+        userPopup.style.display = "block";
     } else {
-        scoreboard.style.display = "none";
+        userPopup.style.display = "none";
     }
 });
-
-// ------------------------------------stoppar inputfield från att bubbla
+// --------------------------------------stoppar inputfield från att bubbla
 username.addEventListener("keyup", function (stopBubble) {
     stopBubble.stopPropagation()
     console.log("input i field")
 })
+// ---------------------------------------
 // Local storage av <input id="username">
 // Skapar en array i localstorage
-scorebtn.addEventListener("click", function () {
-    scoreboard.classList.toggle("visible");
-});
 
 // Local storage for <input id="username">
 let scores = localStorage.getItem("scores");
