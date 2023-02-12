@@ -16,7 +16,7 @@ let scorebtn = document.getElementById("scorebtn");
 let scoreboard = document.querySelector(".scoreboard");
 let username = document.getElementById("username");
 let submit = document.getElementById("submit");
-let userPopup = document.getElementById('#use')
+let userPopup = document.querySelector('#use')
 
 
 
@@ -118,7 +118,7 @@ function updateWrongLetterE1() {
         finalMessage.innerText = 'Unfortunately you lost.';
         popup.style.display = 'flex';
         
-        scores.push(finalScore);
+        scores.push(username.value, finalScore);
         localStorage.setItem("scores", JSON.stringify(scores))
         scoreboard.innerHTML = scores.join("br")
     }
@@ -157,8 +157,8 @@ scorebtn.addEventListener("click", function () {
     }
 });
 //---------------------------------------toggle user-popup.
-window.addEventListener("load", function () {
-    if (userPopup.style.display === "none") {
+document.addEventListener("load", function () {
+    if (userPopup.style.display == "none") {
         userPopup.style.display = "block";
     } else {
         userPopup.style.display = "none";
@@ -179,7 +179,7 @@ if (!scores) {
 
 submit.addEventListener("click", function () {
     // add the username value to the array
-    scores.push(username.value);
+    // scores.push(username.value);
     // store the new values in local storage using stringify
     localStorage.setItem("scores", JSON.stringify(scores));
     // display the local storage in .scoreboard
