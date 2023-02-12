@@ -1,11 +1,11 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
 }
 
-body{
+body {
     background: #e4f1f1;
     color: #090909;
     font-family: Arial, Helvetica, sans-serif;
@@ -18,16 +18,16 @@ body{
     overflow: hidden;
 }
 
-header{
+header {
     background-color: #448a81;
     width: 100%;
-    height:5em;
+    height: 5em;
 }
 
-h1{
+h1 {
     text-align: center;
     font-size: 3em;
-    padding-top:1em;
+    padding-top: 1em;
     background-color: #448a81;
     width: 100%;
 }
@@ -57,8 +57,8 @@ h1{
 }
 
 
-.popup-container{
-    background-color: rgba(0,0,0,0.3);
+.popup-container {
+    background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -69,15 +69,15 @@ h1{
     justify-content: center;
 }
 
-.popup{
+.popup {
     background-color: #2980b9;
     border-radius: 5px;
-    box-shadow: 0 15px 10px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
 }
 
-.popup button{
+.popup button {
     cursor: pointer;
     background-color: #fff;
     color: #2980b9;
@@ -87,11 +87,17 @@ h1{
     font-size: 16px;
 }
 
-.popup button:active{
+.popup button:active {
     transform: scale(0.98);
 }
 
-.popup button:focus{
+.popup button:focus {
     outline: 0;
 }
 
+.scoreboard {
+    display: none;
+    width: 300px;
+    height: 300px;
+    background-color: #f8f8ff;
+}

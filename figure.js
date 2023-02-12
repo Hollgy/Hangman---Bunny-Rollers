@@ -10,8 +10,13 @@ let main = document.querySelector('body')
 let correctAnswers = document.querySelector('#correctAnswers')
 let correctList = document.querySelector('#correctList')
 let wrongList = document.querySelector('#wrongList')
-let lossDisplay = document.querySelector('.hung-screen')
-let winDisplay = document.querySelector('.win-screen')
+// let lossDisplay = document.querySelector('.hung-screen')
+// let winDisplay = document.querySelector('.win-screen')
+let scorebtn = document.getElementById("scorebtn");
+let scoreboard = document.querySelector(".scoreboard");
+let username = document.getElementById("username");
+let submit = document.getElementById("submit");
+
 
 let hangman = {
     ground: document.querySelector('#ground'),
@@ -137,19 +142,66 @@ window.addEventListener('keyup', event => {
 });
 
 //Restart game and play again
-    playAgainBtn.addEventListener('click', () => {
-        //Empty arrays
-        correctLetters.splice(0);
-        wrongLetters.splice(0);
-    
-    
-        console.log(selectedWord)
-        selectedWord = words[Math.floor(Math.random() * words.length)];
-        result()
-    
-    
-        updateWrongLetterE1();
-    
-        popup.style.display = 'none';
-    });
+playAgainBtn.addEventListener('click', () => {
+    //Empty arrays
+    correctLetters.splice(0);
+    wrongLetters.splice(0);
 
+
+    console.log(selectedWord)
+    selectedWord = words[Math.floor(Math.random() * words.length)];
+    result()
+
+
+    updateWrongLetterE1();
+
+    popup.style.display = 'none';
+});
+
+
+
+
+// en toggle för display av scorescreen.
+scorebtn.addEventListener("click", function () {
+    if (scoreboard.style.display === "none") {
+        scoreboard.style.display = "block";
+    } else {
+        scoreboard.style.display = "none";
+    }
+});
+// en toggle för display av user-popup.
+scorebtn.addEventListener("click", function () {
+    if (scoreboard.style.display === "none") {
+        scoreboard.style.display = "block";
+    } else {
+        scoreboard.style.display = "none";
+    }
+});
+
+// stoppar inputfield från att bubbla
+username.addEventListener("keyup", function (stopBubble) {
+    stopBubble.stopPropagation()
+    console.log("input i field")
+})
+// Local storage av <input id="username">
+// Skapar en array i localstorage
+let scores = localStorage.getItem("scores");
+if (!scores) {
+    scores = [];
+} else {
+    scores = JSON.parse(scores);
+}
+
+submit.addEventListener("click", function () {
+    // lägger till username värde i arrayn
+    scores.push(username.value);
+
+    // Lagrar de nya värderna i localstorage med stringify
+    localStorage.setItem("scores", JSON.stringify(scores));
+
+// Trycker ut localstorage i .scoreboard
+    scoreboard.innerHTML = scores.join("<br>");
+});
+
+// Display the stored scores on page load
+scoreboard.innerHTML = scores.join("<br>");
