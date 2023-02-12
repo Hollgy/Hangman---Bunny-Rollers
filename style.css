@@ -1,158 +1,35 @@
-* {
+*{
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Times New Roman', Times, serif;
 }
 
-body {
+body{
+    background: #e4f1f1;
+    color: #090909;
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #e4f1f1;
-}
-
-
-header {
-    text-align: center;
-    width: 100%;
-  margin-bottom: 4em;
-  
-}
-
-/* Gametitle */
-h1 {
-    font-size: 4em;
-    display: flex;
-    justify-content: center;
-    background-color: #448a81;
-    height: 1.5em;
-    width: 100%;
-}
-
-@keyframes animate {
-    0% {
-        background-position: -500%;
-    }
-
-    100% {
-        background-position: 500%;
-    }
-}
-
-/* input av username */
-.user-input {
-    display: flex;
-    justify-content: center;
-}
-
-/* Container för input */
-.container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-/* MAIN ---------------------------------------- */
-main {
     height: 80vh;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    margin: 0;
+    overflow: hidden;
 }
 
-.user-container {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-.scoreboard {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.score-enter{
-    grid-column: 1;
-    grid-row: 1;
-}
-
-.hangmanGame {
-    grid-column: 2 / span 3;
-    grid-row: 1 / span 4;
-}
-
-/* Scoreboard */
-.overlay {
-    /* display: 'none'; */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    height: 400px;
-    padding: 0.2em;
-    background-color: #ffffff;
-    border: #000000 3px solid;
-}
-.hung-screen {
-    position: absolute;
-    width: 320px;
-    height: 500px;
-    top: 50%;
-    left: 50%;
-    margin-left: -160px;
-    margin-top: -300px;
-    background-color: white;
-    border: red 2px solid;
-}
-
-.win-screen {
-    position: absolute;
-    width: 320px;
-    height: 500px;
-    top: 50%;
-    left: 50%;
-    margin-left: -160px;
-    margin-top: -300px;
-    background-color: white;
-    border: green 2px solid;
-}
-
-/* Hangman */
-svg {
-    width: 400px;
-    height: auto;
-}
-
-/* Restart button */
-#userBtn,
-.open-score {
+header{
     background-color: #448a81;
-    color: #ffffff;
-    border: 2px solid #346a64;
-    padding: 0.5em;
-    border-radius: 0.4em;
-    font-weight: bold;
-    font-size: 1.5em;
-    box-shadow: inset 1px 2px 4px #2e2e2e;
-    transition: background-color 0.3s;
+    width: 100%;
+    height:5em;
 }
 
-#userInput {
-    margin-right: 0.5em;
-    font-size: 1.4em;
-}
-
-#userBtn:hover,
-.open-score:hover {
-    cursor: pointer;
-    color: #346a64;
-    background-color: #fafcfc;
-    box-shadow: 1px 2px 3px #363535;
+h1{
+    text-align: center;
+    font-size: 3em;
+    padding-top:1em;
+    background-color: #448a81;
+    width: 100%;
 }
 
 /* Style underline */
@@ -166,8 +43,9 @@ svg {
     margin: 0 3em;
 }
 
-#wrongList {
-    color: #780c0c;
+#wrongLetter {
+    font-size: 4em;
+    color: #d20a0a;
     padding: 0 0.2em;
 }
 
@@ -178,35 +56,42 @@ svg {
     font-size: 3em;
 }
 
-/* Restart button */
-#restart {
+
+.popup-container{
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup{
+    background-color: #2980b9;
+    border-radius: 5px;
+    box-shadow: 0 15px 10px 3px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+.popup button{
     cursor: pointer;
+    background-color: #fff;
+    color: #2980b9;
+    border: 0;
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
 }
 
-@media (max-width: 700px) {
-    h1 {
-        font-size: max(7vw, 2em, 2rem);
-    }
-
-    svg {
-        width: min(40vw, 20em, 20rem);
-    }
-    .score-enter{
-        grid-column: 2;
-        grid-row: 1;
-        margin-bottom: 2em;
-        font-size: min(2.5vw, 1em, 4rem);
-    }
-    
-    .hangmanGame {
-        grid-column: 2 / span 3;
-        grid-row: 2;
-    }
-    .correct_letters, .wrong_letters{
-        grid-column: 1 / span 2;
-        font-size: min(3vw, 1em, 1rem);
-    }
-    header{
-        margin-bottom: 1em;
-    }
+.popup button:active{
+    transform: scale(0.98);
 }
+
+.popup button:focus{
+    outline: 0;
+}
+

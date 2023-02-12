@@ -7,7 +7,6 @@ const uInput = document.getElementById('userInput')
 const scoreOverlay = document.querySelector('.overlay')
 const scoreButton = document.querySelector('.open-score')
 const arrayDisplay = document.getElementById('#msg')
-const head = document.querySelector('header')
 const invisible = 'none';
 const visible = 'block';
 
@@ -26,7 +25,7 @@ scoreButton.addEventListener('click', () => {
 });
 // ------------------------------------
 // stoppar input i username fältet att räknas som gissning
-head.addEventListener("keyup", function (h) {
+uInput.addEventListener("keyup", function (h) {
     h.stopPropagation()
     console.log("input i field")
 })
@@ -34,13 +33,13 @@ head.addEventListener("keyup", function (h) {
 // local storage nedanför
 
 let users = [];
-let score = calculateRemainingTries()
+calculateRemainingTries()
 const addUser = (ev) => {
     ev.preventDefault()
     
     let user = {
         username: document.getElementById('userInput').value,
-        score: 0
+        score: 0 + calculateRemainingTries()
     }
     users.push(user);
 
@@ -67,9 +66,6 @@ function updateScoreBoardUI() {
     localStorage.setItem('MyUserList', JSON.stringify(users));
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('userBtn').addEventListener('click', addUser)
-});
 
 // ------------------------------------ !! TODO
 // Pusha   localStorage.setItem('CurrentUser', JSON.stringify(user));
