@@ -142,7 +142,7 @@ window.addEventListener('keyup', event => {
     }
 });
 
-//Restart game and play again
+//----------------------------------Restart game and play again
 playAgainBtn.addEventListener('click', () => {
     //Empty arrays
     location.reload()
@@ -151,7 +151,7 @@ playAgainBtn.addEventListener('click', () => {
 
 
 
-// en toggle för display av scorescreen.
+//------------------------------------- toggle scorescreen.
 scorebtn.addEventListener("click", function () {
     if (scoreboard.style.display === "none") {
         scoreboard.style.display = "block";
@@ -159,7 +159,7 @@ scorebtn.addEventListener("click", function () {
         scoreboard.style.display = "none";
     }
 });
-// en toggle för display av user-popup.
+//---------------------------------------toggle user-popup.
 scorebtn.addEventListener("click", function () {
     if (scoreboard.style.display === "none") {
         scoreboard.style.display = "block";
@@ -168,7 +168,7 @@ scorebtn.addEventListener("click", function () {
     }
 });
 
-// stoppar inputfield från att bubbla
+// ------------------------------------stoppar inputfield från att bubbla
 username.addEventListener("keyup", function (stopBubble) {
     stopBubble.stopPropagation()
     console.log("input i field")
