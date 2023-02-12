@@ -18,6 +18,7 @@ let username = document.getElementById("username");
 let submit = document.getElementById("submit");
 let userPopup = document.querySelector('#use')
 let reset = document.querySelector('#reset')
+let sort = document.querySelector('#sort')
 
 
 
@@ -117,6 +118,7 @@ function updateWrongLetterE1() {
 		Name: username.value,
 		Score: finalScore
 	}
+	
 
 	let objString = JSON.stringify(obj)
     //Check if lost
@@ -126,11 +128,17 @@ function updateWrongLetterE1() {
         
         scores.push(objString);
         localStorage.setItem("scores", JSON.stringify(scores))
-        scoreboard.innerHTML = scores.join("./n")
+		scoreboard.innerHTML = scores.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
     }
 }
 let countWrongAnswer = 0
 
+
+sort.addEventListener('click', () => {
+	// scores.sort((a, b) => b.Score - a.Score);
+	scores.sort()
+
+})
 
 
 // //Keyup letter press
