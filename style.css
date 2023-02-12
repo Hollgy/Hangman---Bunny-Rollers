@@ -6,16 +6,8 @@
 }
 
 body {
-    background: #e4f1f1;
     color: #090909;
     font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 80vh;
-    margin: 0;
-    overflow: hidden;
 }
 
 header {
@@ -26,10 +18,36 @@ header {
 
 h1 {
     text-align: center;
-    font-size: 3em;
-    padding-top: 1em;
+    font-size: max(3vw, 2em, 2rem);
+    padding-top: 0.5em;
     background-color: #448a81;
     width: 100%;
+}
+
+/* Grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.menu {
+    grid-row: 1;
+    display: flex;
+    margin-top:1em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.game-container {
+    grid-row: 2;
+    max-height: 500px;
+    margin:3em;
+    display: flex;
+    justify-content: center;
+}
+
+svg {
+    width: max(20vw, 10em, 10rem);
 }
 
 /* Style underline */
@@ -44,28 +62,50 @@ h1 {
 }
 
 #wrongLetter {
-    font-size: 4em;
+    font-size: max(4vw, 2em, 2rem);
     color: #d20a0a;
     padding: 0 0.2em;
+    text-align: center;
 }
 
 #word li {
     list-style: none;
     margin: 0;
     padding: 0 0.2em;
-    font-size: 3em;
+    font-size: max(3vw, 2em, 2rem);
+}
+
+#submit,
+#scorebtn,
+#sort,
+#reset {
+    background-color: #448a81;
+    color: #ffffff;
+    border: 1px solid #346a64;
+    padding: 0.5em;
+    border: 2px solid #346a64;
+    padding: 0.1em;
+    border-radius: 0.4em;
+    font-weight: bold;
+    margin-right:0.2em;
+    font-size: 1.2em;
+    box-shadow: 1px 1px 3px #363535;
+    box-shadow: inset 1px 2px 4px #2e2e2e;
+    transition: background-color 0.3s;
+}
+
+#submit:hover,
+#scorebtn:hover,
+#sort:hover,
+#reset:hover {
+    cursor: pointer;
+    color: #346a64;
+    background-color: #fafcfc;
+    box-shadow: 1px 2px 3px #363535;
 }
 
 .user-popup {
     display: block;
-    position: fixed;
-    top: 30%;
-    left: 10%;
-    margin-top: -150px;
-    margin-left: -100px;
-    width: 200px;
-    height: 300px;
-    background-color: #f8f8ff;
 }
 
 
@@ -112,7 +152,7 @@ h1 {
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top:-150px;
+    margin-top: -150px;
     margin-left: -100px;
     width: 200px;
     height: 300px;
@@ -122,3 +162,18 @@ h1 {
 /* .scoreboard.visible {
     display: block;
 } */
+
+@media ( min-width: 890px) {
+
+    #submit,
+    #scorebtn,
+    #sort,
+    #reset {
+        padding: 0.5em;
+        font-size: 1.5em;
+      
+    }
+    #username{
+    font-size: 1.5em;
+}
+}

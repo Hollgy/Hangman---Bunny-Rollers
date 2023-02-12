@@ -89,6 +89,10 @@ function correctGuess() {
             if (countCorrect === selectedWord.length) {
                 finalMessage.innerText = 'Congratulations! You won!';
                 popup.style.display = 'flex';
+				
+				player.push(objString);
+				localStorage.setItem("player", JSON.stringify(player))
+				scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
             }
         }
     })
@@ -102,16 +106,17 @@ function updateWrongLetterE1() {
     wrongList.setAttribute('id', 'wrongLetter')
 
     //Display parts
-    const drawing = [ground, scaffold, head, body, arms, legs]
-
+	const drawing = [ground, scaffold, head, body, arms, legs]
+	
     // Draw when the guess is wrong
     document.addEventListener('keyup', event => {
         if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
-            drawing[countWrongAnswer].style.display = visible
-            countWrongAnswer++
+			drawing[countWrongAnswer].style.display = visible
+			countWrongAnswer++
             console.log('incorrect guess')
         }
     })
+	let countWrongAnswer = 0
 
 	let finalScore = selectedWord.length - countCorrect
     let obj = {
@@ -126,18 +131,17 @@ function updateWrongLetterE1() {
         finalMessage.innerText = 'Unfortunately you lost.';
         popup.style.display = 'flex';
         
-        scores.push(objString);
-        localStorage.setItem("scores", JSON.stringify(scores))
-		scoreboard.innerHTML = scores.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
+        player.push(objString);
+        localStorage.setItem("player", JSON.stringify(player))
+		scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
     }
 }
-let countWrongAnswer = 0
 
-
+let player = JSON.parse(localStorage.getItem("player")) || [];
 sort.addEventListener('click', () => {
-	// scores.sort((a, b) => b.Score - a.Score);
-	scores.sort()
-
+	
+	let sortera = player.sort()
+	console.log(sortera)
 })
 
 
@@ -160,7 +164,7 @@ window.addEventListener('keyup', event => {
 });
 
 reset.addEventListener('click', () => {
-	window.localStorage.removeItem()
+	window.localStorage.clear()
 })
 
 //---------------------------------------Restart game and play again
@@ -190,61 +194,25 @@ username.addEventListener("keyup", function (stopBubble) {
     console.log("input i field")
 })
 //  -------------------------------------Local storage for <input id="username">
-let scores = localStorage.getItem("scores");
-if (!scores) {
-    scores = [];
-} else {
-    scores = JSON.parse(scores);
-}
+
+// let scores = localStorage.getItem("scores");
+// if (!scores) {
+//     scores = [];
+// } else {
+//     scores = JSON.parse(scores);
+// }
 
 submit.addEventListener("click", function () {
     // add the username value to the array
     // scores.push(username.value);
     // store the new values in local storage using stringify
-    localStorage.setItem("scores", JSON.stringify(scores));
+    localStorage.setItem("player", JSON.stringify(player));
     // display the local storage in .scoreboard
-    scoreboard.innerHTML = scores.join("<br>");
+    scoreboard.innerHTML = player.join("<br>");
 });
 
 
 
 // retrieve scores and display them in the scoreboard on page load
-scoreboard.innerHTML = scores.join("<br>");
+scoreboard.innerHTML = player.join("<br>");
 // ---------------------------------
-
-
-
-let users = [];
-let finalScore = selectedWord.length - countCorrect
-
-let score = calculateRemainingTries()
-const addUser = (ev) => {
-    ev.preventDefault()
-    let user = {
-        username: document.getElementById('userInput').value,
-		score: finalScore
-    }
-    users.push(user);
-    // visar en lista
-    console.warn('added', {users} );
-    // skapar en sträng av inputen, pushar detta till array och visas sedan i #msg
-    let pre = document.querySelector('#msg pre');
-    pre.textContent = '\n' + JSON.stringify(users, '\t', 2)
-        score: score
-    }
-    users.push(user);
-
-
-let pre = document.querySelector('.scoreboard');
-let content = "";
-for (let i = 0; i < users.length; i++) {
-	let username = users[i].username.value;
-	let score = users[i].finalScore;
-	content += `Username: ${username}\nScore: ${score}.\n`;
-}
-pre.textContent = content;
-
-
-   // Save to local storage
-   localStorage.setItem('MyUserList', JSON.stringify(users));
-   localStorage.setItem('CurrentUser', JSON.stringify(user));
