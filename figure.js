@@ -88,18 +88,11 @@ function correctGuess() {
                 finalMessage.innerText = 'Congratulations! You won!';
                 popup.style.display = 'flex';
             }
-            // if (countCorrect === shuffle.length) {
-            //     // uppdatera användarens poäng
-            //     updateUserScore();
-            //     winDisplay.style.display = visible
-            // }
         }
     })
 }
 correctGuess()
 // ----------------------------------- FELAKTIGA GISSNINGAR
-
-// Update the wrong letters
 function updateWrongLetterE1() {
     //Display wrong letters
     wrongList.innerHTML = wrongLetters.map(letter => letter.toUpperCase())
@@ -116,14 +109,18 @@ function updateWrongLetterE1() {
             console.log('incorrect guess')
         }
     })
-    let countWrongAnswer = 0
-
+    
     //Check if lost
     if (wrongLetters.length === 6) {
         finalMessage.innerText = 'Unfortunately you lost.';
         popup.style.display = 'flex';
+        
+        scores.push(countWrongAnswer.value);
+        localStorage.setItem("scores", JSON.stringify(scores))
+        scoreboard.innerHTML = scores.join("br")
     }
 }
+let countWrongAnswer = 0
 
 // //Keyup letter press
 window.addEventListener('keyup', event => {
@@ -144,7 +141,7 @@ window.addEventListener('keyup', event => {
     }
 });
 
-//----------------------------------Restart game and play again
+//---------------------------------------Restart game and play again
 playAgainBtn.addEventListener('click', () => {
     //Empty arrays
     location.reload()
@@ -170,11 +167,7 @@ username.addEventListener("keyup", function (stopBubble) {
     stopBubble.stopPropagation()
     console.log("input i field")
 })
-// ---------------------------------------
-// Local storage av <input id="username">
-// Skapar en array i localstorage
-
-// Local storage for <input id="username">
+//  -------------------------------------Local storage for <input id="username">
 let scores = localStorage.getItem("scores");
 if (!scores) {
     scores = [];
@@ -196,7 +189,3 @@ submit.addEventListener("click", function () {
 // retrieve scores and display them in the scoreboard on page load
 scoreboard.innerHTML = scores.join("<br>");
 // ---------------------------------
-
-
-
-
