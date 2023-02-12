@@ -17,6 +17,7 @@ let scoreboard = document.querySelector(".scoreboard");
 let username = document.getElementById("username");
 let submit = document.getElementById("submit");
 let userPopup = document.querySelector('#use')
+let reset = document.querySelector('#reset')
 
 
 
@@ -112,18 +113,25 @@ function updateWrongLetterE1() {
     })
 
 	let finalScore = selectedWord.length - countCorrect
-    
+    let obj = {
+		Name: username.value,
+		Score: finalScore
+	}
+
+	let objString = JSON.stringify(obj)
     //Check if lost
     if (wrongLetters.length === 6) {
         finalMessage.innerText = 'Unfortunately you lost.';
         popup.style.display = 'flex';
         
-        scores.push(username.value, finalScore);
+        scores.push(objString);
         localStorage.setItem("scores", JSON.stringify(scores))
-        scoreboard.innerHTML = scores.join("br")
+        scoreboard.innerHTML = scores.join("./n")
     }
 }
 let countWrongAnswer = 0
+
+
 
 // //Keyup letter press
 window.addEventListener('keyup', event => {
@@ -142,6 +150,10 @@ window.addEventListener('keyup', event => {
         }
     }
 });
+
+reset.addEventListener('click', () => {
+	window.localStorage.removeItem()
+})
 
 //---------------------------------------Restart game and play again
 playAgainBtn.addEventListener('click', () => {
@@ -191,3 +203,40 @@ submit.addEventListener("click", function () {
 // retrieve scores and display them in the scoreboard on page load
 scoreboard.innerHTML = scores.join("<br>");
 // ---------------------------------
+
+
+
+let users = [];
+let finalScore = selectedWord.length - countCorrect
+
+let score = calculateRemainingTries()
+const addUser = (ev) => {
+    ev.preventDefault()
+    let user = {
+        username: document.getElementById('userInput').value,
+		score: finalScore
+    }
+    users.push(user);
+    // visar en lista
+    console.warn('added', {users} );
+    // skapar en sträng av inputen, pushar detta till array och visas sedan i #msg
+    let pre = document.querySelector('#msg pre');
+    pre.textContent = '\n' + JSON.stringify(users, '\t', 2)
+        score: score
+    }
+    users.push(user);
+
+
+let pre = document.querySelector('.scoreboard');
+let content = "";
+for (let i = 0; i < users.length; i++) {
+	let username = users[i].username.value;
+	let score = users[i].finalScore;
+	content += `Username: ${username}\nScore: ${score}.\n`;
+}
+pre.textContent = content;
+
+
+   // Save to local storage
+   localStorage.setItem('MyUserList', JSON.stringify(users));
+   localStorage.setItem('CurrentUser', JSON.stringify(user));
