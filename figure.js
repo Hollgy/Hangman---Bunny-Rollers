@@ -176,6 +176,11 @@ username.addEventListener("keyup", function (stopBubble) {
 })
 // Local storage av <input id="username">
 // Skapar en array i localstorage
+scorebtn.addEventListener("click", function () {
+    scoreboard.classList.toggle("visible");
+});
+
+// Local storage for <input id="username">
 let scores = localStorage.getItem("scores");
 if (!scores) {
     scores = [];
@@ -184,17 +189,17 @@ if (!scores) {
 }
 
 submit.addEventListener("click", function () {
-    // lägger till username värde i arrayn.
+    // add the username value to the array
     scores.push(username.value);
 
-    // Lagrar de nya värderna i localstorage med stringify.
+    // store the new values in local storage using stringify
     localStorage.setItem("scores", JSON.stringify(scores));
 
-// Trycker ut localstorage i .scoreboard.
+    // display the local storage in .scoreboard
     scoreboard.innerHTML = scores.join("<br>");
 });
 
-// Hämtar scores och lägger dom i scoreboard vid sidstart.
+// retrieve scores and display them in the scoreboard on page load
 scoreboard.innerHTML = scores.join("<br>");
-
+// ---------------------------------
 
