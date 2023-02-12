@@ -92,6 +92,7 @@ function correctGuess() {
     })
 }
 correctGuess()
+
 // ----------------------------------- FELAKTIGA GISSNINGAR
 function updateWrongLetterE1() {
     //Display wrong letters
@@ -109,13 +110,15 @@ function updateWrongLetterE1() {
             console.log('incorrect guess')
         }
     })
+
+	let finalScore = selectedWord.length - countCorrect
     
     //Check if lost
     if (wrongLetters.length === 6) {
         finalMessage.innerText = 'Unfortunately you lost.';
         popup.style.display = 'flex';
         
-        scores.push(countWrongAnswer);
+        scores.push(finalScore);
         localStorage.setItem("scores", JSON.stringify(scores))
         scoreboard.innerHTML = scores.join("br")
     }
