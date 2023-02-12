@@ -11,60 +11,60 @@ const invisible = 'none';
 const visible = 'block';
 
 // ------------------------------------
-let isVisible = false;
-scoreOverlay.style.display = invisible;
-scoreButton.addEventListener('click', () => {
-    if (!isVisible) {
-        updateScoreBoardUI();
-        scoreOverlay.style.display = visible;
-        isVisible = true;
-    } else {
-        scoreOverlay.style.display = invisible;
-        isVisible = false;
-    }
-});
+// let isVisible = false;
+// scoreOverlay.style.display = invisible;
+// scoreButton.addEventListener('click', () => {
+//     if (!isVisible) {
+//         updateScoreBoardUI();
+//         scoreOverlay.style.display = visible;
+//         isVisible = true;
+//     } else {
+//         scoreOverlay.style.display = invisible;
+//         isVisible = false;
+//     }
+// });
 // ------------------------------------
 // stoppar input i username fältet att räknas som gissning
-uInput.addEventListener("keyup", function (h) {
-    h.stopPropagation()
-    console.log("input i field")
-})
+// uInput.addEventListener("keyup", function (h) {
+//     h.stopPropagation()
+//     console.log("input i field")
+// })
 // ------------------------------------
 // local storage nedanför
 
-let users = [];
-calculateRemainingTries()
-const addUser = (ev) => {
-    ev.preventDefault()
+// let users = [];
+// calculateRemainingTries()
+// const addUser = (ev) => {
+//     ev.preventDefault()
     
-    let user = {
-        username: document.getElementById('userInput').value,
-        score: 0 + calculateRemainingTries()
-    }
-    users.push(user);
+//     let user = {
+//         username: document.getElementById('userInput').value,
+//         score: 0 + calculateRemainingTries()
+//     }
+//     users.push(user);
 
-    updateScoreBoardUI();
-    localStorage.setItem('CurrentUser', JSON.stringify(user));
-}
+//     updateScoreBoardUI();
+//     localStorage.setItem('CurrentUser', JSON.stringify(user));
+// }
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('userBtn').addEventListener('click', addUser)
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     document.getElementById('userBtn').addEventListener('click', addUser)
+// });
 
-function updateScoreBoardUI() {
-    // Build the string to be displayed in the #msg element
-    let pre = document.querySelector('#msg pre');
-    let content = "";
-    for (let i = 0; i < users.length; i++) {
-        let username = users[i].username;
-        let score = users[i].score;
-        content += `Username: ${username}\nScore: ${score}.\n`;
-    }
-    pre.textContent = content;
+// function updateScoreBoardUI() {
+//     // Build the string to be displayed in the #msg element
+//     let pre = document.querySelector('#msg pre');
+//     let content = "";
+//     for (let i = 0; i < users.length; i++) {
+//         let username = users[i].username;
+//         let score = users[i].score;
+//         content += `Username: ${username}\nScore: ${score}.\n`;
+//     }
+//     pre.textContent = content;
     
-    // Save to local storage
-    localStorage.setItem('MyUserList', JSON.stringify(users));
-}
+//     // Save to local storage
+//     localStorage.setItem('MyUserList', JSON.stringify(users));
+// }
 
 
 // ------------------------------------ !! TODO
