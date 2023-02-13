@@ -88,10 +88,10 @@ function correctGuess() {
             if (countCorrect === selectedWord.length) {
                 finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${wrongLetters.length} times!`;
                 popup.style.display = 'flex';
-				
-				player.push(objString);
-				localStorage.setItem("player", JSON.stringify(player))
-				scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
+
+                player.push(objString);
+                localStorage.setItem("player", JSON.stringify(player))
+                scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n")
             }
         }
     })
@@ -105,43 +105,46 @@ function updateWrongLetterE1() {
     wrongList.setAttribute('id', 'wrongLetter')
 
     //Display parts
-	const drawing = [ground, scaffold, head, body, arms, legs]
-	
+    const drawing = [ground, scaffold, head, body, arms, legs]
+
     // Draw when the guess is wrong
     document.addEventListener('keyup', event => {
         if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
-			drawing[countWrongAnswer].style.display = visible
-			countWrongAnswer++
+            drawing[countWrongAnswer].style.display = visible
+            countWrongAnswer++
             console.log('incorrect guess')
         }
     })
-	let countWrongAnswer = 0
+    let countWrongAnswer = 0
 
-	let finalScore = selectedWord.length - countCorrect
+    let finalScore = selectedWord.length - countCorrect
     let obj = {
-		name: username.value,
-		score: finalScore
-	}
-    //Check if lost
+        name: username.value,
+        score: finalScore
+    }
+    //----------------------------------------------------------------------Check if lost
     if (wrongLetters.length === 6) {
         finalMessage.innerText = `Unfortunately you lost the secret word was.\n  "${selectedWord}"`
         popup.style.display = 'flex';
-        
+// ----------------------------------------------------------------------------push update of score and username to scoreboard
         player.push(obj);
         localStorage.setItem("player", JSON.stringify(player))
-		scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
+        scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n")
     }
 }
 
+
+// -------------------------------------------------------SORT AV SCOREBOARD
 let player = JSON.parse(localStorage.getItem("player")) || [];
+let sortOrder = 1;
 sort.addEventListener('click', () => {
-	
-	let sortera = player.sort((a,b)=> a.score - b.score)
-	console.log(sortera)
-})
-
-
-// //Keyup letter press
+    player.sort((a, b) => sortOrder * (a.score - b.score));
+    sortOrder *= -1;
+    console.log(player);
+    scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
+});
+// -------------------------------------------------------SORT AV SCOREBOARD
+//---------------------------------------------PUSH AV GISSADE BOKSTÄVER
 window.addEventListener('keyup', event => {
     if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
         const letter = event.key;
@@ -157,17 +160,19 @@ window.addEventListener('keyup', event => {
         }
     }
 });
-
+//---------------------------------------------PUSH AV GISSADE BOKSTÄVER
+// ----------------------------------------RESET KNAPP
 reset.addEventListener('click', () => {
-	window.localStorage.clear()
+    window.localStorage.clear()
     location.reload()
 })
-
+// ----------------------------------------RESET KNAPP
 //---------------------------------------Restart game and play again
 playAgainBtn.addEventListener('click', () => {
     //Empty arrays
     location.reload()
 });
+//---------------------------------------Restart game and play again
 //---------------------------------------toggle scorescreen.
 scorebtn.addEventListener("click", function () {
     if (scoreboard.style.display === "none") {
@@ -176,6 +181,7 @@ scorebtn.addEventListener("click", function () {
         scoreboard.style.display = "none";
     }
 });
+//---------------------------------------toggle scorescreen.
 //---------------------------------------toggle user-popup.
 document.addEventListener("load", function () {
     if (userPopup.style.display == "none") {
@@ -184,14 +190,17 @@ document.addEventListener("load", function () {
         userPopup.style.display = "none";
     }
 });
+//---------------------------------------toggle user-popup.
 // --------------------------------------stoppar inputfield från att bubbla
 username.addEventListener("keyup", function (stopBubble) {
     stopBubble.stopPropagation()
     console.log("input i field")
 })
+// --------------------------------------stoppar inputfield från att bubbla
+// --------------------------------------------SUBMIT AV USERNAME OCH SCORE TILL SCOREBOARD
 submit.addEventListener("click", function () {
     localStorage.setItem("player", JSON.stringify(player));
     scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
 });
 scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
-// ---------------------------------
+// --------------------------------------------SUBMIT AV USERNAME OCH SCORE TILL SCOREBOARD
