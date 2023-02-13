@@ -3,15 +3,11 @@ import { wordArray } from "./word-list.js";
 const playAgainBtn = document.getElementById('play-button');
 const popup = document.getElementById('popup-container');
 const finalMessage = document.getElementById('final-message');
-const words = ['application', 'programming', 'interface', 'wizard'];
 let correct = document.querySelector('.correct_letters')
-let incorrect = document.querySelector('.wrong_letters')
 let main = document.querySelector('body')
 let correctAnswers = document.querySelector('#correctAnswers')
 let correctList = document.querySelector('#correctList')
 let wrongList = document.querySelector('#wrongList')
-// let lossDisplay = document.querySelector('.hung-screen')
-// let winDisplay = document.querySelector('.win-screen')
 let scorebtn = document.getElementById("scorebtn");
 let scoreboard = document.querySelector(".scoreboard");
 let username = document.getElementById("username");
@@ -109,7 +105,7 @@ function updateWrongLetterE1() {
 
     // Draw when the guess is wrong
     document.addEventListener('keyup', event => {
-        if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
+        if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true && wrongLetters.includes(event.key) == false) {
             drawing[countWrongAnswer].style.display = visible
             countWrongAnswer++
             console.log('incorrect guess')
