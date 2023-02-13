@@ -146,12 +146,15 @@ function updateWrongLetterE1() {
 // -------------------------------------------------------SORT AV SCOREBOARD
 let player = JSON.parse(localStorage.getItem("player")) || [];
 let sortOrder = 1;
-sort.addEventListener('click', () => {
-    player.sort((a, b) => sortOrder * (a.result - b.result));
-    sortOrder *= -1;
-    console.log(player);
-    renderScore()
-});
+function isSortByAscending(){
+    sort.addEventListener('click', () => {
+        player.sort((a, b) => sortOrder * (a.result - b.result));
+        sortOrder *= -1;
+        console.log(player);
+        renderScore()
+    });
+}
+isSortByAscending()
 // -------------------------------------------------------SORT AV SCOREBOARD
 //---------------------------------------------PUSH AV GISSADE BOKSTÄVER
 window.addEventListener('keyup', event => {
