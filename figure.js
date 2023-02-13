@@ -96,9 +96,8 @@ function correctGuess() {
 
                 player.push(obj);
                 localStorage.setItem("player", JSON.stringify(player))
-
-                let scoreboardString = player.map(o => `Name: ${o.name} Score: ${o.score} Result: ${o.result ? 'Victory' : 'Defeat'}`).join("<br>");
-                scoreboard.innerHTML = scoreboardString;            }
+               renderScore()
+            }
         }
     })
 }
@@ -137,10 +136,10 @@ function updateWrongLetterE1() {
             result: lose
         }
 
-// ----------------------------------------------------------------------------push update of score and username to scoreboard
+        // ----------------------------------------------------------------------------push update of score and username to scoreboard
         player.push(obj);
         localStorage.setItem("player", JSON.stringify(player))
-        scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score} Result:${o.result}`).join("./n")
+        renderScore()
     }
 }
 
@@ -151,7 +150,7 @@ sort.addEventListener('click', () => {
     player.sort((a, b) => sortOrder * (a.result - b.result));
     sortOrder *= -1;
     console.log(player);
-    scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score} Result:${o.result}`).join("<br>");
+    renderScore()
 });
 // -------------------------------------------------------SORT AV SCOREBOARD
 //---------------------------------------------PUSH AV GISSADE BOKSTÄVER
@@ -210,7 +209,20 @@ username.addEventListener("keyup", function (stopBubble) {
 // --------------------------------------------SUBMIT AV USERNAME OCH SCORE TILL SCOREBOARD
 submit.addEventListener("click", function () {
     localStorage.setItem("player", JSON.stringify(player));
-    scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
+    renderScore()
 });
-scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score} Result:${o.result}`).join("<br>");
+
+function renderScore() {
+    scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score} Result:${booleanToWinLose(o.result)}`).join("<br>");
+}
+
+function booleanToWinLose(b){
+    if(b == true){
+        return 'victory'
+    }
+    else{
+        return 'Defeat'
+    }
+}
+renderScore()
 // --------------------------------------------SUBMIT AV USERNAME OCH SCORE TILL SCOREBOARD
