@@ -83,7 +83,7 @@ function correctGuess() {
                 finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${wrongLetters.length} times!`;
                 popup.style.display = 'flex';
 
-                let result = true
+                const victory = true
 
                 let finalScore = selectedWord.length - countCorrect
                 let obj = {
