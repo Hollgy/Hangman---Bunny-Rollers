@@ -71,7 +71,6 @@ function result() {
     }
 }
 result()
-
 // ------------------------------- KORREKTA GISSNINGAR
 let countCorrect = 0
 function correctGuess() {
@@ -87,7 +86,7 @@ function correctGuess() {
                 correctLetters[x] = false
             }
             if (countCorrect === selectedWord.length) {
-                finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${countCorrect} times!`;
+                finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${wrongLetters.length} times!`;
                 popup.style.display = 'flex';
 				
 				player.push(objString);
