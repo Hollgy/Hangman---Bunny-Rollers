@@ -16,7 +16,9 @@ let scorebtn = document.getElementById("scorebtn");
 let scoreboard = document.querySelector(".scoreboard");
 let username = document.getElementById("username");
 let submit = document.getElementById("submit");
-let userPopup = document.getElementById('#use')
+let userPopup = document.querySelector('#use')
+let reset = document.querySelector('#reset')
+let sort = document.querySelector('#sort')
 
 
 
@@ -52,7 +54,6 @@ let selectedWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 
 const correctLetters = [];
 const wrongLetters = [];
-let guesses = [];
 let guess
 
 console.log(selectedWord)
@@ -70,6 +71,7 @@ function result() {
     }
 }
 result()
+
 // ------------------------------- KORREKTA GISSNINGAR
 let countCorrect = 0
 function correctGuess() {
@@ -85,13 +87,18 @@ function correctGuess() {
                 correctLetters[x] = false
             }
             if (countCorrect === selectedWord.length) {
-                finalMessage.innerText = 'Congratulations! You won!';
+                finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${countCorrect} times!`;
                 popup.style.display = 'flex';
+				
+				player.push(objString);
+				localStorage.setItem("player", JSON.stringify(player))
+				scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
             }
         }
     })
 }
 correctGuess()
+
 // ----------------------------------- FELAKTIGA GISSNINGAR
 function updateWrongLetterE1() {
     //Display wrong letters
@@ -99,28 +106,47 @@ function updateWrongLetterE1() {
     wrongList.setAttribute('id', 'wrongLetter')
 
     //Display parts
-    const drawing = [ground, scaffold, head, body, arms, legs]
-
+	const drawing = [ground, scaffold, head, body, arms, legs]
+	
     // Draw when the guess is wrong
     document.addEventListener('keyup', event => {
         if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
-            drawing[countWrongAnswer].style.display = visible
-            countWrongAnswer++
+			drawing[countWrongAnswer].style.display = visible
+			countWrongAnswer++
             console.log('incorrect guess')
         }
     })
-    
+	let countWrongAnswer = 0
+
+	let finalScore = selectedWord.length - countCorrect
+    let obj = {
+		Name: username.value,
+		Score: finalScore
+	}
+	// obj.sort((a, b) => {
+    //     return a.score - b.score
+    // })
+    // console.log(obj)
+
+	let objString = JSON.stringify(obj)
     //Check if lost
     if (wrongLetters.length === 6) {
-        finalMessage.innerText = 'Unfortunately you lost.';
+        finalMessage.innerText = `Unfortunately you lost the secret word was.\n  "${selectedWord}"`
         popup.style.display = 'flex';
         
-        scores.push(countWrongAnswer);
-        localStorage.setItem("scores", JSON.stringify(scores))
-        scoreboard.innerHTML = scores.join("br")
+        player.push(objString);
+        localStorage.setItem("player", JSON.stringify(player))
+		scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
     }
 }
-let countWrongAnswer = 0
+
+let player = JSON.parse(localStorage.getItem("player")) || [];
+sort.addEventListener('click', () => {
+	
+	let sortera = player.sort()
+	console.log(sortera)
+})
+
 
 // //Keyup letter press
 window.addEventListener('keyup', event => {
@@ -140,6 +166,11 @@ window.addEventListener('keyup', event => {
     }
 });
 
+reset.addEventListener('click', () => {
+	window.localStorage.clear()
+    location.reload()
+})
+
 //---------------------------------------Restart game and play again
 playAgainBtn.addEventListener('click', () => {
     //Empty arrays
@@ -154,8 +185,8 @@ scorebtn.addEventListener("click", function () {
     }
 });
 //---------------------------------------toggle user-popup.
-window.addEventListener("load", function () {
-    if (userPopup.style.display === "none") {
+document.addEventListener("load", function () {
+    if (userPopup.style.display == "none") {
         userPopup.style.display = "block";
     } else {
         userPopup.style.display = "none";
@@ -167,24 +198,25 @@ username.addEventListener("keyup", function (stopBubble) {
     console.log("input i field")
 })
 //  -------------------------------------Local storage for <input id="username">
-let scores = localStorage.getItem("scores");
-if (!scores) {
-    scores = [];
-} else {
-    scores = JSON.parse(scores);
-}
+
+// let scores = localStorage.getItem("scores");
+// if (!scores) {
+//     scores = [];
+// } else {
+//     scores = JSON.parse(scores);
+// }
 
 submit.addEventListener("click", function () {
     // add the username value to the array
-    scores.push(username.value);
+    // scores.push(username.value);
     // store the new values in local storage using stringify
-    localStorage.setItem("scores", JSON.stringify(scores));
+    localStorage.setItem("player", JSON.stringify(player));
     // display the local storage in .scoreboard
-    scoreboard.innerHTML = scores.join("<br>");
+    scoreboard.innerHTML = player.join("<br>");
 });
 
 
 
 // retrieve scores and display them in the scoreboard on page load
-scoreboard.innerHTML = scores.join("<br>");
+scoreboard.innerHTML = player.join("<br>");
 // ---------------------------------
