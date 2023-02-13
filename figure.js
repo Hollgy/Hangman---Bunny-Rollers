@@ -123,7 +123,10 @@ function updateWrongLetterE1() {
 		Name: username.value,
 		Score: finalScore
 	}
-	
+	// obj.sort((a, b) => {
+    //     return a.score - b.score
+    // })
+    // console.log(obj)
 
 	let objString = JSON.stringify(obj)
     //Check if lost
