@@ -14,7 +14,8 @@ let username = document.getElementById("username");
 let submit = document.getElementById("submit");
 let userPopup = document.querySelector('#use')
 let reset = document.querySelector('#reset')
-let sort = document.querySelector('#sort')
+let sortWin = document.querySelector('#sort-win-loss')
+let sortScore = document.querySelector('#sort-score')
 
 let hangman = {
     ground: document.querySelector('#ground'),
@@ -147,7 +148,7 @@ function updateWrongLetterE1() {
 let player = JSON.parse(localStorage.getItem("player")) || [];
 let sortOrder = 1;
 function isSortByAscending(){
-    sort.addEventListener('click', () => {
+    sortWin.addEventListener('click', () => {
         player.sort((a, b) => sortOrder * (a.result - b.result));
         sortOrder *= -1;
         console.log(player);
@@ -156,6 +157,15 @@ function isSortByAscending(){
 }
 isSortByAscending()
 // -------------------------------------------------------SORT AV SCOREBOARD
+function isSortByScore(){
+    sortScore.addEventListener('click', () => {
+        player.sort((a, b) => sortOrder * (a.score - b.score));
+        sortOrder *= -1;
+        console.log(player);
+        renderScore()
+    });
+}
+isSortByScore()
 //---------------------------------------------PUSH AV GISSADE BOKSTÄVER
 window.addEventListener('keyup', event => {
     if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
