@@ -116,24 +116,26 @@ function updateWrongLetterE1() {
     // Draw when the guess is wrong
     document.addEventListener('keyup', event => {
         if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true && wrongLetters.includes(event.key) == false) {
-            drawing[-1 + wrongLetters.length].style.display = visible
+            drawing[countWrongAnswer].style.display = visible
             countWrongAnswer++
             console.log('incorrect guess')
         }
     })
     let countWrongAnswer = 0
-    let lose = false
 
-    let finalScore = selectedWord.length - countCorrect
-    let obj = {
-        name: username.value,
-        score: finalScore,
-        result: lose
-    }
     //----------------------------------------------------------------------Check if lost
     if (wrongLetters.length === 7) {
         finalMessage.innerText = `Unfortunately you lost the secret word was.\n  "${selectedWord}"`
         popup.style.display = 'flex';
+
+        const lose = false
+
+        let finalScore = selectedWord.length - countCorrect
+        let obj = {
+            name: username.value,
+            score: finalScore,
+            result: lose
+        }
 
 // ----------------------------------------------------------------------------push update of score and username to scoreboard
         player.push(obj);
