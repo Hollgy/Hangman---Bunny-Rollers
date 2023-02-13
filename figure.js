@@ -88,10 +88,10 @@ function correctGuess() {
             if (countCorrect === selectedWord.length) {
                 finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${wrongLetters.length} times!`;
                 popup.style.display = 'flex';
-				
-				player.push(objString);
-				localStorage.setItem("player", JSON.stringify(player))
-				scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
+
+                player.push(objString);
+                localStorage.setItem("player", JSON.stringify(player))
+                scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n")
             }
         }
     })
@@ -105,39 +105,39 @@ function updateWrongLetterE1() {
     wrongList.setAttribute('id', 'wrongLetter')
 
     //Display parts
-	const drawing = [ground, scaffold, head, body, arms, legs]
-	
+    const drawing = [ground, scaffold, head, body, arms, legs]
+
     // Draw when the guess is wrong
     document.addEventListener('keyup', event => {
-        if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true) {
-			drawing[countWrongAnswer].style.display = visible
-			countWrongAnswer++
+        if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true && wrongLetters.includes(event.key) == false) {
+            drawing[countWrongAnswer].style.display = visible
+            countWrongAnswer++
             console.log('incorrect guess')
         }
     })
-	let countWrongAnswer = 0
+    let countWrongAnswer = 0
 
-	let finalScore = selectedWord.length - countCorrect
+    let finalScore = selectedWord.length - countCorrect
     let obj = {
-		name: username.value,
-		score: finalScore
-	}
+        name: username.value,
+        score: finalScore
+    }
     //Check if lost
     if (wrongLetters.length === 6) {
         finalMessage.innerText = `Unfortunately you lost the secret word was.\n  "${selectedWord}"`
         popup.style.display = 'flex';
-        
+
         player.push(obj);
         localStorage.setItem("player", JSON.stringify(player))
-		scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
+        scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n")
     }
 }
 
 let player = JSON.parse(localStorage.getItem("player")) || [];
 sort.addEventListener('click', () => {
-	
-	let sortera = player.sort((a,b)=> a.score - b.score)
-	console.log(sortera)
+
+    let sortera = player.sort((a, b) => a.score - b.score)
+    console.log(sortera)
 })
 
 
@@ -159,7 +159,7 @@ window.addEventListener('keyup', event => {
 });
 
 reset.addEventListener('click', () => {
-	window.localStorage.clear()
+    window.localStorage.clear()
     location.reload()
 })
 
