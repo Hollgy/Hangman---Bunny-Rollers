@@ -85,7 +85,7 @@ function correctGuess() {
                 finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${wrongLetters.length} times!`;
                 popup.style.display = 'flex';
 
-                const result = true
+                let result = true
 
                 let finalScore = selectedWord.length - countCorrect
                 let obj = {
@@ -96,8 +96,9 @@ function correctGuess() {
 
                 player.push(obj);
                 localStorage.setItem("player", JSON.stringify(player))
-                scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n")
-            }
+
+                let scoreboardString = player.map(o => `Name: ${o.name} Score: ${o.score} Result: ${o.result ? 'Victory' : 'Defeat'}`).join("<br>");
+                scoreboard.innerHTML = scoreboardString;            }
         }
     })
 }
