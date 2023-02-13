@@ -120,21 +120,15 @@ function updateWrongLetterE1() {
 
 	let finalScore = selectedWord.length - countCorrect
     let obj = {
-		Name: username.value,
-		Score: finalScore
+		name: username.value,
+		score: finalScore
 	}
-	// obj.sort((a, b) => {
-    //     return a.score - b.score
-    // })
-    // console.log(obj)
-
-	let objString = JSON.stringify(obj)
     //Check if lost
     if (wrongLetters.length === 6) {
         finalMessage.innerText = `Unfortunately you lost the secret word was.\n  "${selectedWord}"`
         popup.style.display = 'flex';
         
-        player.push(objString);
+        player.push(obj);
         localStorage.setItem("player", JSON.stringify(player))
 		scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n") 
     }
@@ -143,7 +137,7 @@ function updateWrongLetterE1() {
 let player = JSON.parse(localStorage.getItem("player")) || [];
 sort.addEventListener('click', () => {
 	
-	let sortera = player.sort()
+	let sortera = player.sort((a,b)=> a.score - b.score)
 	console.log(sortera)
 })
 
@@ -159,7 +153,6 @@ window.addEventListener('keyup', event => {
         } else {
             if (!wrongLetters.includes(letter)) {
                 wrongLetters.push(letter);
-
                 updateWrongLetterE1();
             }
         }
@@ -197,26 +190,9 @@ username.addEventListener("keyup", function (stopBubble) {
     stopBubble.stopPropagation()
     console.log("input i field")
 })
-//  -------------------------------------Local storage for <input id="username">
-
-// let scores = localStorage.getItem("scores");
-// if (!scores) {
-//     scores = [];
-// } else {
-//     scores = JSON.parse(scores);
-// }
-
 submit.addEventListener("click", function () {
-    // add the username value to the array
-    // scores.push(username.value);
-    // store the new values in local storage using stringify
     localStorage.setItem("player", JSON.stringify(player));
-    // display the local storage in .scoreboard
-    scoreboard.innerHTML = player.join("<br>");
+    scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
 });
-
-
-
-// retrieve scores and display them in the scoreboard on page load
-scoreboard.innerHTML = player.join("<br>");
+scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
 // ---------------------------------
