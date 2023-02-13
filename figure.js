@@ -85,13 +85,13 @@ function correctGuess() {
                 finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${wrongLetters.length} times!`;
                 popup.style.display = 'flex';
 
-                const result = true
+                const victory = true
 
                 let finalScore = selectedWord.length - countCorrect
                 let obj = {
                     name: username.value,
                     score: finalScore,
-                    result: result
+                    result: victory
                 }
 
                 player.push(obj);
@@ -115,23 +115,22 @@ function updateWrongLetterE1() {
     // Draw when the guess is wrong
     document.addEventListener('keyup', event => {
         if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true && wrongLetters.includes(event.key) == false) {
-            drawing[countWrongAnswer].style.display = visible
+            drawing[-1 + wrongLetters.length].style.display = visible
             countWrongAnswer++
             console.log('incorrect guess')
         }
     })
     let countWrongAnswer = 0
     let lose = false
-    let res = lose.toString()
 
     let finalScore = selectedWord.length - countCorrect
     let obj = {
         name: username.value,
         score: finalScore,
-        result: res
+        result: lose
     }
     //----------------------------------------------------------------------Check if lost
-    if (wrongLetters.length === 6) {
+    if (wrongLetters.length === 7) {
         finalMessage.innerText = `Unfortunately you lost the secret word was.\n  "${selectedWord}"`
         popup.style.display = 'flex';
 
