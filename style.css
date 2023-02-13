@@ -83,8 +83,6 @@ svg {
     color: #ffffff;
     border: 1px solid #346a64;
     padding: 0.5em;
-    border: 2px solid #346a64;
-    padding: 0.1em;
     border-radius: 0.4em;
     font-weight: bold;
     margin-right:0.2em;
@@ -110,7 +108,7 @@ svg {
 
 
 .popup-container {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #0000004d;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -122,21 +120,34 @@ svg {
 }
 
 .popup {
-    background-color: #2980b9;
+    background-color: #e1e5e8;
     border-radius: 5px;
-    box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 10px 3px #0000001a;
     padding: 20px;
     text-align: center;
+    border:5px solid #29bba2;
 }
 
 .popup button {
     cursor: pointer;
-    background-color: #fff;
-    color: #2980b9;
-    border: 0;
+    background-color: #448a81;
+    color: #ffffff;
+    border: 1px solid #346a64;
+    border-radius: 0.4em;
+    font-weight: bold;
+    box-shadow: 1px 1px 3px #363535;
+    box-shadow: inset 1px 2px 4px #2e2e2e;
+    transition: background-color 0.3s;
     margin-top: 20px;
     padding: 12px 20px;
     font-size: 16px;
+}
+
+.popup button:hover {
+    cursor: pointer;
+    color: #346a64;
+    background-color: #fafcfc;
+    box-shadow: 1px 2px 3px #363535;
 }
 
 .popup button:active {
@@ -156,12 +167,13 @@ svg {
     margin-left: -100px;
     width: 200px;
     height: 300px;
-    background-color: #f8f8ff;
+    background-color: #fcfeff;
+    border-radius: 5px;
+    box-shadow: 0 15px 10px 3px #0000001a;
+    padding: 20px;
+    text-align: center;
+    border:5px solid #29bba2;
 }
-
-/* .scoreboard.visible {
-    display: block;
-} */
 
 @media ( min-width: 890px) {
 

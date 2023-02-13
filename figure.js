@@ -128,7 +128,7 @@ function updateWrongLetterE1() {
 	let objString = JSON.stringify(obj)
     //Check if lost
     if (wrongLetters.length === 6) {
-        finalMessage.innerText = 'Unfortunately you lost.';
+        finalMessage.innerText = `Unfortunately you lost the secret word was.\n  "${selectedWord}"`
         popup.style.display = 'flex';
         
         player.push(objString);
@@ -165,6 +165,7 @@ window.addEventListener('keyup', event => {
 
 reset.addEventListener('click', () => {
 	window.localStorage.clear()
+    location.reload()
 })
 
 //---------------------------------------Restart game and play again
