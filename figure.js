@@ -85,7 +85,16 @@ function correctGuess() {
                 finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${wrongLetters.length} times!`;
                 popup.style.display = 'flex';
 
-                player.push(objString);
+                const result = true
+
+                let finalScore = selectedWord.length - countCorrect
+                let obj = {
+                    name: username.value,
+                    score: finalScore,
+                    result: result
+                }
+
+                player.push(obj);
                 localStorage.setItem("player", JSON.stringify(player))
                 scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n")
             }
@@ -112,32 +121,35 @@ function updateWrongLetterE1() {
         }
     })
     let countWrongAnswer = 0
+    let lose = false
+    let res = lose.toString()
 
     let finalScore = selectedWord.length - countCorrect
     let obj = {
         name: username.value,
-        score: finalScore
+        score: finalScore,
+        result: res
     }
     //----------------------------------------------------------------------Check if lost
     if (wrongLetters.length === 6) {
         finalMessage.innerText = `Unfortunately you lost the secret word was.\n  "${selectedWord}"`
         popup.style.display = 'flex';
+
 // ----------------------------------------------------------------------------push update of score and username to scoreboard
         player.push(obj);
         localStorage.setItem("player", JSON.stringify(player))
-        scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score}`).join("./n")
+        scoreboard.innerHTML = player.map(o => `Name: ${o.Name} Score: ${o.Score} Result:${o.result}`).join("./n")
     }
 }
-
 
 // -------------------------------------------------------SORT AV SCOREBOARD
 let player = JSON.parse(localStorage.getItem("player")) || [];
 let sortOrder = 1;
 sort.addEventListener('click', () => {
-    player.sort((a, b) => sortOrder * (a.score - b.score));
+    player.sort((a, b) => sortOrder * (a.result - b.result));
     sortOrder *= -1;
     console.log(player);
-    scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
+    scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score} Result:${o.result}`).join("<br>");
 });
 // -------------------------------------------------------SORT AV SCOREBOARD
 //---------------------------------------------PUSH AV GISSADE BOKSTÄVER
@@ -198,5 +210,5 @@ submit.addEventListener("click", function () {
     localStorage.setItem("player", JSON.stringify(player));
     scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
 });
-scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score}`).join("<br>");
+scoreboard.innerHTML = player.map(o => `Name:${o.name} Score:${o.score} Result:${o.result}`).join("<br>");
 // --------------------------------------------SUBMIT AV USERNAME OCH SCORE TILL SCOREBOARD
