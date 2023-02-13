@@ -165,8 +165,8 @@ svg {
     left: 50%;
     margin-top: -150px;
     margin-left: -100px;
-    width: 200px;
-    height: 300px;
+    min-width: 200px;
+    min-height: 300px;
     background-color: #fcfeff;
     border-radius: 5px;
     box-shadow: 0 15px 10px 3px #0000001a;

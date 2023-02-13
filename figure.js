@@ -54,7 +54,6 @@ let selectedWord = wordArray[Math.floor(Math.random() * wordArray.length)];
 
 const correctLetters = [];
 const wrongLetters = [];
-let guesses = [];
 let guess
 
 console.log(selectedWord)
@@ -72,6 +71,7 @@ function result() {
     }
 }
 result()
+
 // ------------------------------- KORREKTA GISSNINGAR
 let countCorrect = 0
 function correctGuess() {
@@ -87,7 +87,7 @@ function correctGuess() {
                 correctLetters[x] = false
             }
             if (countCorrect === selectedWord.length) {
-                finalMessage.innerText = 'Congratulations! You won!';
+                finalMessage.innerText = `Congratulations! You won and only guessed \n wrong ${countCorrect} times!`;
                 popup.style.display = 'flex';
 				
 				player.push(objString);
