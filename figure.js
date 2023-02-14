@@ -98,21 +98,9 @@ function correctGuess() {
                renderScore()
             }
         }
-    })
-}
-correctGuess()
 
-// ----------------------------------- FELAKTIGA GISSNINGAR
-function updateWrongLetterE1() {
-    //Display wrong letters
-    wrongList.innerHTML = wrongLetters.map(letter => letter.toUpperCase())
-    wrongList.setAttribute('id', 'wrongLetter')
-
-    //Display parts
-    const drawing = [ground, scaffold, head, body, arms, legs]
-
-    // Draw when the guess is wrong
-    document.addEventListener('keyup', event => {
+        //Display parts
+        const drawing = [ground, scaffold, head, body, arms, legs]
         if (selectedWord.toLowerCase().includes(event.key) == false && onlyLetter.includes(event.key) == true && wrongLetters.includes(event.key) == false) {
             while(wrongLetters.length >= countWrongAnswer){
                 drawing[countWrongAnswer].style.display = visible
@@ -122,6 +110,15 @@ function updateWrongLetterE1() {
         }
     })
     let countWrongAnswer = 0
+    
+}
+correctGuess()
+
+// ----------------------------------- FELAKTIGA GISSNINGAR
+function updateWrongLetterE1() {
+    //Display wrong letters
+    wrongList.innerHTML = wrongLetters.map(letter => letter.toUpperCase())
+    wrongList.setAttribute('id', 'wrongLetter')
 
     //----------------------------------------------------------------------Check if lost
     if (wrongLetters.length === 6) {
